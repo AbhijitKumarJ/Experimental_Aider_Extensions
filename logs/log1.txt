@@ -1,0 +1,98 @@
+(pyexptl1) python main.py
+Custom aider classes loaded and patched
+Loading command modules...
+Registering command: glog
+Registered command cmd_glog
+Registered completions for glog
+Loaded command module: custom_aider.commands.git_commands
+Registering command: clip_edit
+Registered command cmd_clip_edit
+Registered completions for clip_edit
+Loaded command module: custom_aider.commands.clipboard_edits_command
+Registering command: files
+Registered command cmd_files
+Registering command: stats
+Registered command cmd_stats
+Loaded command module: custom_aider.commands.utility_commands
+Registering command: zadd
+Registered command cmd_zadd
+Registering command: zdrop
+Registered command cmd_zdrop
+Registering command: zcommit
+Registered command cmd_zcommit
+Registering command: zclear
+Registered command cmd_zclear
+Registering command: zmodel
+Registered command cmd_zmodel
+Registering command: zvoice
+Registered command cmd_zvoice
+Registering command: zweb
+Registered command cmd_zweb
+Loaded command module: custom_aider.commands.existing_commands
+Loaded custom commands: glog, clip_edit, files, stats, zadd, zdrop, zcommit, zclear, zmodel, zvoice, zweb
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+CustomCoder.create called
+Created coder: <class 'aider.coders.wholefile_coder.WholeFileCoder'>
+Found commands on coder
+Installing commands: ['glog', 'clip_edit', 'files', 'stats', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb']
+Installing 11 commands...
+Installed command: cmd_glog
+Installed command: cmd_clip_edit
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed command: cmd_zadd
+Installed command: cmd_zdrop
+Installed command: cmd_zcommit
+Installed command: cmd_zclear
+Installed command: cmd_zmodel
+Installed command: cmd_zvoice
+Installed command: cmd_zweb
+Installed completions: completions_glog
+Installed completions: completions_clip_edit
+Finished installing commands
+Finished installing commands
+Aider v0.63.2
+Model: gemini/gemini-1.5-flash-latest with whole edit format
+Git repo: .git with 3 files
+Repo-map: using 1024 tokens, auto refresh
+VSCode terminal detected, pretty output has been disabled.
+Use /help <question> for help, run "aider --help" to see cmd line args
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /glog                                                                                                            
+
+* f6de313 - 2024-11-21 21:12 AbhijitKumarJ (HEAD -> main, origin/main, origin/HEAD)
+  Initial commit
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /add main.py                                                                                                     
+
+Added /home/xxx/Experimental_Aider_Extensions/main.py to the chat
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+main.py                                                                                                            
+> /files                                                                                                           
+
+
+Files in chat:
+    568B 2024-11-21 18:33 main.py
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+main.py                                                                                                            
+> /stats                                                                                                           
+
+
+Total Statistics:
+Files: 1
+Lines: 20
+Words: 63
+Chars: 549
+
+By File Type:
+
+.py:
+  Files: 1
+  Lines: 20
+  Words: 63
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+main.py                                                                                                            
+> /quit                                                                                                            
+
+(pyexptl1) 
