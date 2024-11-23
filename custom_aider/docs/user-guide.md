@@ -21,8 +21,8 @@ A comprehensive guide to using the extended Aider command-line interface with al
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/aider-extension.git
-cd aider-extension
+git clone https://github.com/AbhijitKumarJ/Experimental_Aider_Extensions.git
+cd Experimental_Aider_Extensions
 ```
 
 2. Install required dependencies:
