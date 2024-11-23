@@ -1,0 +1,315 @@
+G:\zwork4\Experimental_Aider_Extensions> & "C:/Users/All Users/miniconda3/python.exe" g:/zwork4/Experimental_Aider_Extensions/main.py
+Custom aider classes loaded and patched
+Loading command modules...
+Registering command: clip_edit
+Registered command cmd_clip_edit
+Registered completions for clip_edit
+Loaded command module: custom_aider.commands.clipboard_edits_command
+Registering command: createragfromdoc
+Registered command cmd_createragfromdoc
+Registered completions for createragfromdoc
+Registering command: queryragfromdoc
+Registered command cmd_queryragfromdoc
+Registered completions for queryragfromdoc
+Registering command: listrag
+Registered command cmd_listrag
+Registering command: deleterag
+Registered command cmd_deleterag
+Registered completions for deleterag
+Loaded command module: custom_aider.commands.docrag_commands
+Registering command: zadd
+Registered command cmd_zadd
+Registering command: zdrop 
+Registered command cmd_zdrop
+Registering command: zcommit
+Registered command cmd_zcommit
+Registering command: zclear
+Registered command cmd_zclear
+Registering command: zmodel
+Registered command cmd_zmodel
+Registering command: zvoice
+Registered command cmd_zvoice
+Registering command: zweb
+Registered command cmd_zweb
+Loaded command module: custom_aider.commands.existing_commands
+Registering command: glog
+Registered command cmd_glog
+Registered completions for glog
+Loaded command module: custom_aider.commands.git_commands
+Registering command: files
+Registered command cmd_files
+Registering command: stats
+Registered command cmd_stats
+Loaded command module: custom_aider.commands.utility_commands
+Loaded custom commands: clip_edit, createragfromdoc, queryragfromdoc, listrag, deleterag, zadd, 
+zdrop, zcommit, zclear, zmodel, zvoice, zweb, glog, files, stats
+────────────────────────────────────────────────────────────────────────────────────────────────CustomCoder.create called
+Created coder: <class 'aider.coders.wholefile_coder.WholeFileCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'files', 'stats']   
+Installing 15 commands...
+Installed command: cmd_clip_edit
+Installed command: cmd_createragfromdoc
+Installed command: cmd_queryragfromdoc
+Installed command: cmd_listrag
+Installed command: cmd_deleterag
+Installed command: cmd_zadd
+Installed command: cmd_zdrop
+Installed command: cmd_zcommit
+Installed command: cmd_zclear
+Installed command: cmd_zmodel
+Installed command: cmd_zvoice
+Installed command: cmd_zweb
+Installed command: cmd_glog
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed completions: completions_glog
+Finished installing commands
+Finished installing commands
+Aider v0.63.2
+Model: gemini/gemini-1.5-flash-latest with whole edit format
+Git repo: .git with 11 files
+Repo-map: using 1024 tokens, auto refresh
+VSCode terminal detected, pretty output has been disabled.
+Use /help <question> for help, run "aider --help" to see cmd line args
+────────────────────────────────────────────────────────────────────────────────────────────────> /createragfromdoc anthropicdoc "G:\\zwork4\\anthropic_full_docs.txt"                          
+
+Creating RAG 'anthropicdoc'...
+Error: Document not found at  
+G:\zwork4\Experimental_Aider_Extensions\"G:\zwork4\anthropic_full_docs.txt"
+────────────────────────────────────────────────────────────────────────────────────────────────> /createragfromdoc anthropicdoc "anthropic_full_docs.txt"                                      
+
+Creating RAG 'anthropicdoc'...
+Error: Document not found at G:\zwork4\Experimental_Aider_Extensions\"anthropic_full_docs.txt"
+────────────────────────────────────────────────────────────────────────────────────────────────> /createragfromdoc anthropicdoc anthropic_full_docs.txt                                        
+
+Creating RAG 'anthropicdoc'...
+Successfully created RAG 'anthropicdoc' with 655 chunks
+────────────────────────────────────────────────────────────────────────────────────────────────> /queryragfromdoc anthropicdoc "how does tool use work?"                                       
+
+Querying RAG 'anthropicdoc'...
+
+Search results from RAG 'anthropicdoc':
+
+
+--- Result 1 (Relevance: 75.23%) ---
+How tool use works
+
+Integrate external tools with Claude in these steps:
+
+<Steps>
+  <Step title="Provide Claude with tools and a user prompt">
+    *   Define tools with names, descriptions, and input schemas in your API request.
+    *   Include a user prompt that might require these tools, e.g., "What's the weather in San  
+Francisco?"
+  </Step>
+
+  <Step title="Claude decides to use a tool">
+    *   Claude assesses if any tools can help with the user's query.
+    *   If yes, Claude constructs a properly formatted tool use request.
+    *   The API response has a `stop_reason` of `tool_use`, signaling Claude's intent.
+  </Step>
+
+  <Step title="Extract tool input, run code, and return results">
+    *   On your end, extract the tool name and input from Claude's request.
+    *   Execute the actual tool code client-side.
+    *   Continue the conversation with a new `user` message containing a `tool_result` content  
+block.
+  </Step>
+
+  <Step title="Claude uses tool result to formulate a response">
+    *   Claude analyzes the tool results to craft its final response to the original user       
+prompt.
+  </Step>
+</Steps>
+
+Note: Steps 3 and 4 are optional. For some workflows, Claude's tool use request (step 2) might  
+be all you need, without sending results back to Claude.
+
+<Tip>
+  **Tools are user-provided**
+
+  It's important to note that Claude does not have access to any built-in server-side tools. Alltools must be explicitly provided by you, the user, in each API request. This gives you full    
+control and flexibility over the tools Claude can use.
+
+  The [computer use (beta)](/en/docs/computer-use) functionality is an exception - it introducestools that are provided by Anthropic but implemented by you, the user.
+</Tip>
+
+***
+
+Source: anthropic_full_docs.txt
+
+--- Result 2 (Relevance: 73.95%) ---
+How computer use works
+
+<Steps>
+  <Step title="1. Provide Claude with computer use tools and a user prompt" icon="toolbox">     
+    *   Add Anthropic-defined computer use tools to your API request.
+    *   Include a user prompt that might require these tools, e.g., "Save a picture of a cat to 
+my desktop."
+  </Step>
+
+  <Step title="2. Claude decides to use a tool" icon="screwdriver-wrench">
+    *   Claude loads the stored computer use tool definitions and assesses if any tools can helpwith the user's query.
+    *   If yes, Claude constructs a properly formatted tool use request.
+    *   The API response has a `stop_reason` of `tool_use`, signaling Claude's intent.
+  </Step>
+
+  <Step title="3. Extract tool input, evaluate the tool on a computer, and return results"      
+icon="computer">
+    *   On your end, extract the tool name and input from Claude's request.
+    *   Use the tool on a container or Virtual Machine.
+    *   Continue the conversation with a new `user` message containing a `tool_result` content  
+block.
+  </Step>
+
+  <Step title="4. Claude continues calling computer use tools until it's completed the task"    
+icon="arrows-spin">
+    *   Claude analyzes the tool results to determine if more tool use is needed or the task hasbeen completed.
+    *   If Claude decides it needs another tool, it responds with another `tool_use`
+`stop_reason` and you should return to step 3.
+    *   Otherwise, it crafts a text response to the user.
+  </Step>
+</Steps>
+
+We refer to the repetition of steps 3 and 4 without user input as the "agent loop" - i.e.,      
+Claude responding with a tool use request and your application responding to Claude with the    
+results of evaluating that request.
+
+***
+
+Source: anthropic_full_docs.txt
+
+--- Result 3 (Relevance: 73.40%) ---
+Handling tool use and tool result content blocks
+
+When Claude decides to use one of the tools you've provided, it will return a response with a   
+`stop_reason` of `tool_use` and one or more `tool_use` content blocks in the API response that  
+include:
+
+*   `id`: A unique identifier for this particular tool use block. This will be used to match up 
+the tool results later.
+*   `name`: The name of the tool being used.
+*   `input`: An object containing the input being passed to the tool, conforming to the tool's  
+`input_schema`.
+
+<Accordion title="Example API response with a `tool_use` content block">
+  ```JSON JSON
+  {
+    "id": "msg_01Aq9w938a90dw8q",
+    "model": "claude-3-5-sonnet-20241022",
+    "stop_reason": "tool_use",
+    "role": "assistant",
+    "content": [
+      {
+        "type": "text",
+        "text": "<thinking>I need to use the get_weather, and the user wants SF, which is likelySan Francisco, CA.</thinking>"
+      },
+      {
+        "type": "tool_use",
+        "id": "toolu_01A09q90qw90lq917835lq9",
+        "name": "get_weather",
+        "input": {"location": "San Francisco, CA", "unit": "celsius"}
+      }
+    ]
+  }
+  ```
+</Accordion>
+
+When you receive a tool use response, you should:
+
+1.  Extract the `name`, `id`, and `input` from the `tool_use` block.
+2.  Run the actual tool in your codebase corresponding to that tool name, passing in the tool   
+`input`.
+3.  \[optional] Continue the conversation by sending a new message with the `role` of `user`,   
+and a `content` block containing the `tool_result` type and the following information:
+    *   `tool_use_id`: The `id` of the tool use request this is a result for.
+    *   `content`: The result of the tool, as a string (e.g. `"content": "15 degrees"`) or list 
+of nested content blocks (e.g. `"content": [{"type": "text", "text": "15 degrees"}]`). These    
+content blocks can use the `text` or `image` types.
+    *   `is_error` (optional): Set to `true` if the tool execution resulted in an error.        
+
+<AccordionGroup>
+  <Accordion title="Example of successful tool result">
+    ```JSON JSON
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "tool_result",
+          "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+          "content": "15 degrees"
+        }
+      ]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Example of tool result with images">
+    ```JSON JSON
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "tool_result",
+          "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+          "content": [
+            {"type": "text", "text": "15 degrees"},
+            {
+              "type": "image",
+              "source": {
+                "type": "base64",
+                "media_type": "image/jpeg",
+                "data": "/9j/4AAQSkZJRg...",
+              }
+            }
+          ]
+        }
+      ]
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Example of empty tool result">
+    ```JSON JSON
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "tool_result",
+          "tool_use_id": "toolu_01A09q90qw90lq917835lq9",
+        }
+      ]
+    }
+    ```
+  </Accordion>
+</AccordionGroup>
+
+After receiving the tool result, Claude will use that information to continue generating a      
+response to the original user prompt.
+
+<Tip>
+  **Differences from other APIs**
+
+  Unlike APIs that separate tool use or use special roles like `tool` or `function`, Anthropic'sAPI integrates tools directly into the `user` and `assistant` message structure.
+
+  Messages contain arrays of `text`, `image`, `tool_use`, and `tool_result` blocks. `user`      
+messages include client-side content and `tool_result`, while `assistant` messages contain      
+AI-generated content and `tool_use`.
+</Tip>
+
+Source: anthropic_full_docs.txt
+────────────────────────────────────────────────────────────────────────────────────────────────>  
+> /listrag                                                                                      
+
+Available RAGs:
+
+anthropicdoc:
+  Source: G:\zwork4\Experimental_Aider_Extensions\anthropic_full_docs.txt
+  Chunks: 655
+  Created: 2024-11-22 04:18
+────────────────────────────────────────────────────────────────────────────────────────────────>  

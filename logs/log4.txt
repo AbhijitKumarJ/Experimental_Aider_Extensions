@@ -1,0 +1,259 @@
+G:\zwork4\Experimental_Aider_Extensions> & "C:/Users/All Users/miniconda3/python.exe" g:/zwork4/Experimental_Aider_Extensions/main.py
+Custom aider classes loaded and patched
+Loading command modules...
+Registering command: clip_edit
+Registered command cmd_clip_edit
+Registered completions for clip_edit
+Loaded command module: custom_aider.commands.clipboard_edits_command
+Registering command: createragfromdoc
+Registered command cmd_createragfromdoc
+Registered completions for createragfromdoc
+Registering command: queryragfromdoc
+Registered command cmd_queryragfromdoc
+Registered completions for queryragfromdoc
+Registering command: listrag
+Registered command cmd_listrag
+Registering command: deleterag
+Registered command cmd_deleterag
+Registered completions for deleterag
+Loaded command module: custom_aider.commands.docrag_commands
+Registering command: zadd
+Registered command cmd_zadd
+Registering command: zdrop
+Registered command cmd_zdrop
+Registering command: zcommit
+Registered command cmd_zcommit
+Registering command: zclear
+Registered command cmd_zclear
+Registering command: zmodel
+Registered command cmd_zmodel
+Registering command: zvoice
+Registered command cmd_zvoice
+Registering command: zweb
+Registered command cmd_zweb
+Loaded command module: custom_aider.commands.existing_commands
+Registering command: glog
+Registered command cmd_glog
+Registered completions for glog
+Loaded command module: custom_aider.commands.git_commands
+Registering command: customchat
+Registered command cmd_customchat
+Loaded command module: custom_aider.commands.keywords_command
+Registering command: files
+Registered command cmd_files
+Registering command: stats
+Registered command cmd_stats
+Loaded command module: custom_aider.commands.utility_commands
+Loaded custom commands: clip_edit, createragfromdoc, queryragfromdoc, listrag, deleterag, zadd, 
+zdrop, zcommit, zclear, zmodel, zvoice, zweb, glog, customchat, files, stats
+────────────────────────────────────────────────────────────────────────────────────────────────CustomCoder.create called
+Created coder: <class 'aider.coders.wholefile_coder.WholeFileCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'customchat', 'files', 'stats']
+Installing 16 commands...
+Installed command: cmd_clip_edit
+Installed command: cmd_createragfromdoc
+Installed command: cmd_queryragfromdoc
+Installed command: cmd_listrag
+Installed command: cmd_deleterag
+Installed command: cmd_zadd
+Installed command: cmd_zdrop
+Installed command: cmd_zcommit
+Installed command: cmd_zclear
+Installed command: cmd_zmodel
+Installed command: cmd_zvoice
+Installed command: cmd_zweb
+Installed command: cmd_glog
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed command: cmd_zweb
+Installed command: cmd_glog
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed command: cmd_zweb
+Installed command: cmd_glog
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed completions: completions_glog
+Finished installing commands
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed completions: completions_glog
+Finished installing commands
+Finished installing commands
+Finished installing commands
+Aider v0.63.2
+Model: gemini/gemini-1.5-flash-latest with whole edit format
+Git repo: .git with 11 files
+Repo-map: using 1024 tokens, auto refresh
+VSCode terminal detected, pretty output has been disabled.
+Use /help <question> for help, run "aider --help" to see cmd line args
+────────────────────────────────────────────────────────────────────────────────────────────────> /chat-mode ask                                                                                
+
+CustomCoder.create called
+Created coder: <class 'aider.coders.ask_coder.AskCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'customchat', 'files', 'stats']
+Installing 16 commands...
+Warning: Command cmd_clip_edit already exists
+Warning: Command cmd_createragfromdoc already exists
+Warning: Command cmd_queryragfromdoc already exists
+Warning: Command cmd_listrag already exists
+Warning: Command cmd_deleterag already exists
+Warning: Command cmd_zadd already exists
+Warning: Command cmd_zdrop already exists
+Warning: Command cmd_zcommit already exists
+Warning: Command cmd_zclear already exists
+Warning: Command cmd_zmodel already exists
+Warning: Command cmd_zvoice already exists
+Warning: Command cmd_zweb already exists
+Warning: Command cmd_glog already exists
+Warning: Command cmd_customchat already exists
+Warning: Command cmd_files already exists
+Warning: Command cmd_stats already exists
+Finished installing commands
+Finished installing commands
+Aider v0.63.2
+Model: gemini/gemini-1.5-flash-latest with ask edit format
+Git repo: .git with 11 files
+Repo-map: using 1024 tokens, auto refresh
+────────────────────────────────────────────────────────────────────────────────────────────────ask> /customchat how to do @text-tests                                                          
+
+
+Expanded message:
+how to do Unit tests using pytest with mocking
+
+Press Enter to send or Ctrl-C to cancel...
+
+CustomCoder.create called
+Created coder: <class 'aider.coders.ask_coder.AskCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'customchat', 'files', 'stats']
+Installing 16 commands...
+Warning: Command cmd_clip_edit already exists
+Warning: Command cmd_createragfromdoc already exists
+Warning: Command cmd_queryragfromdoc already exists
+Warning: Command cmd_listrag already exists
+Warning: Command cmd_deleterag already exists
+Warning: Command cmd_zadd already exists
+Warning: Command cmd_zdrop already exists
+Warning: Command cmd_zcommit already exists
+Warning: Command cmd_zclear already exists
+Warning: Command cmd_zmodel already exists
+Warning: Command cmd_zvoice already exists
+Warning: Command cmd_zweb already exists
+Warning: Command cmd_glog already exists
+Warning: Command cmd_customchat already exists
+Warning: Command cmd_files already exists
+Warning: Command cmd_stats already exists
+Finished installing commands
+Finished installing commands
+
+Unit testing with pytest and mocking involves isolating units of code (typically functions or   
+methods) and testing their behavior in a controlled environment.  Mocking allows you to replace 
+dependencies with simulated objects, preventing external factors from influencing your test     
+results.  Here's a breakdown of how to do this, along with best practices:
+
+1. Project Setup:
+
+ • Install pytest and a mocking library:  The most common mocking library for pytest is
+   pytest-mock. Install it using pip:
+
+
+ pip install pytest pytest-mock
+
+
+ • Structure your tests: Create a tests directory (or similar) in your project, and place your  
+   test files (e.g., test_mymodule.py) inside.  Test files should follow the naming convention  
+   test_*.py or *_test.py.
+
+2. Basic Mocking Example:
+
+Let's say you have a function that depends on an external service (e.g., a database or API):    
+
+
+ # mymodule.py
+ import requests
+
+ def get_data_from_api(url):
+     response = requests.get(url)
+     response.raise_for_status()  # Raise HTTPError for
+
+
+
+Tokens: 218 sent, 237 received. Cost: $0.000087 message, $0.000087 session.
+CustomCoder.create called
+Created coder: <class 'aider.coders.ask_coder.AskCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'customchat', 'files', 'stats']
+Installing 16 commands...
+Warning: Command cmd_clip_edit already exists
+Warning: Command cmd_createragfromdoc already exists
+Warning: Command cmd_queryragfromdoc already exists
+Warning: Command cmd_listrag already exists
+Warning: Command cmd_deleterag already exists
+Warning: Command cmd_zadd already exists
+Warning: Command cmd_zdrop already exists
+Warning: Command cmd_zcommit already exists
+Warning: Command cmd_zclear already exists
+Warning: Command cmd_zmodel already exists
+Warning: Command cmd_zvoice already exists
+Warning: Command cmd_zweb already exists
+Warning: Command cmd_glog already exists
+Warning: Command cmd_customchat already exists
+Warning: Command cmd_files already exists
+Warning: Command cmd_stats already exists
+Finished installing commands
+Finished installing commands
+────────────────────────────────────────────────────────────────────────────────────────────────ask> / 
+ /add              /customchat       /listrag          /read-only        /voice                
+ /architect        /deleterag        /load             /report           /web                  
+ /ask              /diff             /ls               /reset            /zadd                 
+ /chat-mode        /drop             /map              /run              /zclear               
+ /clear            /exit             /map-refresh      /save             /zcommit              
+ /clip-edit        /files            /model            /settings         /zdrop                
+ /code             /git              /models           /stats            /zmodel               
+ /commit           /glog             /paste            /test             /zvoice               
+ /copy             /help             /queryragfromdoc  /tokens           /zweb                 
+ /createragfromdoc /lint             /quit             /undo                                   
+
+
+
+

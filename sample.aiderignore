@@ -1,7 +1,11 @@
 .aider*
 .env
+.env.local
+__pycache__
 custom_aider
-
+main.py
+logs
+screenshots
 
 
 # rename it to .aiderignore

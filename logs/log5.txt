@@ -1,0 +1,259 @@
+G:\zwork4\Experimental_Aider_Extensions> & "C:/Users/All Users/miniconda3/python.exe" g:/zwork4/Experimental_Aider_Extensions/main.py
+Custom aider classes loaded and patched
+Loading command modules...
+Registering command: clip_edit
+Registered command cmd_clip_edit
+Registered completions for clip_edit
+Loaded command module: custom_aider.commands.clipboard_edits_command
+Registering command: showcontext
+Registered command cmd_showcontext
+Loaded command module: custom_aider.commands.context_commands
+Registering command: createragfromdoc
+Registered command cmd_createragfromdoc
+Registered completions for createragfromdoc
+Registering command: queryragfromdoc
+Registered command cmd_queryragfromdoc
+Registered completions for queryragfromdoc
+Registering command: listrag
+Registered command cmd_listrag
+Registering command: deleterag
+Registered command cmd_deleterag
+Registered completions for deleterag
+Loaded command module: custom_aider.commands.docrag_commands
+Registering command: zadd
+Registered command cmd_zadd
+Registering command: zdrop
+Registered command cmd_zdrop
+Registering command: zcommit
+Registered command cmd_zcommit
+Registering command: zclear
+Registered command cmd_zclear
+Registering command: zmodel
+Registered command cmd_zmodel
+Registering command: zvoice
+Registered command cmd_zvoice
+Registering command: zweb
+Registered command cmd_zweb
+Loaded command module: custom_aider.commands.existing_commands
+Registering command: glog
+Registered command cmd_glog
+Registered completions for glog
+Loaded command module: custom_aider.commands.git_commands
+Registering command: customchat
+Registered command cmd_customchat
+Loaded command module: custom_aider.commands.keywords_command
+Registering command: files
+Registered command cmd_files
+Registering command: stats
+Registered command cmd_stats
+Loaded command module: custom_aider.commands.utility_commands
+Loaded custom commands: clip_edit, showcontext, createragfromdoc, queryragfromdoc, listrag, deleterag, zadd, zdrop, zcommit, zclear, zmodel, zvoice, zweb, glog, customchat, files, stats       
+────────────────────────────────────────────────────────────────────────────────────────────────Newer aider version v0.64.1 is available.
+Run this command to update:
+
+python.exe -m pip install --upgrade --upgrade-strategy only-if-needed aider-chat
+CustomCoder.create called
+Created coder: <class 'aider.coders.wholefile_coder.WholeFileCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'showcontext', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'customchat', 'files', 'stats']
+Installing 17 commands...
+Installed command: cmd_clip_edit
+Installed command: cmd_showcontext
+Installed command: cmd_createragfromdoc
+Installed command: cmd_queryragfromdoc
+Installed command: cmd_listrag
+Installed command: cmd_deleterag
+Installed command: cmd_zadd
+Installed command: cmd_zdrop
+Installed command: cmd_zcommit
+Installed command: cmd_zclear
+Installed command: cmd_zmodel
+Installed command: cmd_zvoice
+Installed command: cmd_zweb
+Installed command: cmd_glog
+Installed command: cmd_customchat
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed completions: completions_glog
+Finished installing commands
+Finished installing commands
+Aider v0.63.2
+Model: gemini/gemini-1.5-flash-latest with whole edit format
+Git repo: .git with 11 files
+Repo-map: using 1024 tokens, auto refresh
+VSCode terminal detected, pretty output has been disabled.
+Use /help <question> for help, run "aider --help" to see cmd line args
+────────────────────────────────────────────────────────────────────────────────────────────────> /add README.md                                                                                
+
+Added G:\zwork4\Experimental_Aider_Extensions\README.md to the chat
+────────────────────────────────────────────────────────────────────────────────────────────────README.md                                                                                       
+> /glog                                                                                         
+
+* 6e0b4f3 - 2024-11-21 21:49 Abhijit (HEAD -> main, origin/main, 
+origin/HEAD)
+| screen shot and log
+|
+* 1b4e612 - 2024-11-21 21:39 Abhijit
+| Initial extension commands added
+|
+* f6de313 - 2024-11-21 21:12 AbhijitKumarJ
+  Initial commit
+
+────────────────────────────────────────────────────────────────────────────────────────────────README.md                                                                                       
+> /showcontext                                                                                  
+
+
+Saved context to 
+G:\zwork4\Experimental_Aider_Extensions\.aider\context\context_20241122_050241.html
+Opened in default browser
+────────────────────────────────────────────────────────────────────────────────────────────────README.md                                                                                       
+> /add tic.html                                                                                 
+
+No files matched 'tic.html'. Do you want to create G:\zwork4\Experimental_Aider_Extensions\tic. 
+html? (Y)es/(N)o [Yes]:                                                                         
+Added G:\zwork4\Experimental_Aider_Extensions\tic.html to the chat
+────────────────────────────────────────────────────────────────────────────────────────────────README.md tic.html                                                                              
+> create a basic tictactoe game in html in single file using dark theme in tic.html             
+
+Here's the `tic.html` file with a basic Tic-Tac-Toe game implemented using HTML, CSS, and JavaScript, styled with a dark theme:
+
+tic.html
+<source>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tic-Tac-Toe</title>
+<style>
+body {
+  background-color: #222;
+  color: #eee;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  border: 2px solid #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background-color: #444;
+}
+
+.status {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+</style>
+</head>
+<body>
+
+<div class="board" id="board">
+  <div class="cell" data-index="0"></div>
+  <div class="cell" data-index="1"></div>
+  <div class="cell" data-index="2"></div>
+  <div class="cell" data-index="3"></div>
+  <div class="cell" data-index="4"></div>
+  <div class="cell" data-index="5"></div>
+  <div class="cell" data-index="6"></div>
+  <div class="cell" data-index="7"></div>
+  <div class="cell" data-index="8"></div>
+</div>
+
+<div class="status" id="status">X's turn</div>
+
+<script>
+const board = document.getElementById('board');
+const status = document.getElementById('status');
+let currentPlayer = 'X';
+let gameBoard = ['', '', '', '', '', '', '', '', ''];
+let gameActive = true;
+
+const winningConditions = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+  [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+  [0, 4, 8], [2, 4, 6]             // Diagonals
+];
+
+const handleCellClick = (e) => {
+  const index = parseInt(e.target.dataset.index);
+  if (gameBoard[index] === '' && gameActive) {
+    gameBoard[index] = currentPlayer;
+    e.target.textContent = currentPlayer;
+    checkWin();
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    status.textContent = `${currentPlayer}'s turn`;
+  }
+};
+
+const checkWin = () => {
+  for (const condition of winningConditions) {
+    const [a, b, c] = condition;
+    if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+      status.textContent = `${gameBoard[a]} wins!`;
+      gameActive = false;
+      return;
+    }
+  }
+  if (!gameBoard.includes('')) {
+    status.textContent = "It's a draw!";
+    gameActive = false;
+  }
+};
+
+board.addEventListener('click', (e) => {
+  if (e.target.classList.contains('cell')) {
+    handleCellClick(e);
+  }
+});
+</script>
+
+</body>
+</html>
+</source>
+
+Tokens: 1.3k sent, 787 received. Cost: $0.00033 message, $0.00033 session.
+Committing tic.html before applying edits.
+Commit e721d31 feat: Add tic.html file
+Applied edit to tic.html
+Commit 92d152e feat: Add basic Tic-Tac-Toe game with dark theme
+You can use /undo to undo and discard each aider commit.
+────────────────────────────────────────────────────────────────────────────────────────────────README.md tic.html                                                                              
+> /run start tic.html                                                                           
+
+
+Add the output to the chat?                                                                     
+(Y)es/(n)o/message with instructions: n                                                         
+
+────────────────────────────────────────────────────────────────────────────────────────────────README.md tic.html                                                                              
+> /showcontext                                                                                  
+
+
+Saved context to 
+G:\zwork4\Experimental_Aider_Extensions\.aider\context\context_20241122_050517.html
+Opened in default browser
+────────────────────────────────────────────────────────────────────────────────────────────────README.md tic.html                                                                              
+>  

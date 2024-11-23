@@ -1,0 +1,152 @@
+G:\zwork4\Experimental_Aider_Extensions>python main.py
+Custom aider classes loaded and patched
+Loading command modules...
+Registering command: clip_edit
+Registered command cmd_clip_edit
+Registered completions for clip_edit
+Loaded command module: custom_aider.commands.clipboard_edits_command
+Registering command: zadd
+Registered command cmd_zadd
+Registering command: zdrop
+Registered command cmd_zdrop
+Registering command: zcommit
+Registered command cmd_zcommit
+Registering command: zclear
+Registered command cmd_zclear
+Registering command: zmodel
+Registered command cmd_zmodel
+Registering command: zvoice
+Registered command cmd_zvoice
+Registering command: zweb
+Registered command cmd_zweb
+Loaded command module: custom_aider.commands.existing_commands
+Registering command: glog
+Registered command cmd_glog
+Registered completions for glog
+Loaded command module: custom_aider.commands.git_commands
+Registering command: files
+Registered command cmd_files
+Registering command: stats
+Registered command cmd_stats
+Loaded command module: custom_aider.commands.utility_commands
+Loaded custom commands: clip_edit, zadd, zdrop, zcommit, zclear, zmodel, zvoice, zweb, glog, files, stats
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────CustomCoder.create called
+Created coder: <class 'aider.coders.wholefile_coder.WholeFileCoder'>
+Found commands on coder
+Installing commands: ['clip_edit', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'glog', 'files', 'stats']
+Installing 11 commands...
+Installed command: cmd_clip_edit
+Installed command: cmd_zadd
+Installed command: cmd_zdrop
+Installed command: cmd_zcommit
+Installed command: cmd_zclear
+Installed command: cmd_zmodel
+Installed command: cmd_zvoice
+Installed command: cmd_zweb
+Installed command: cmd_glog
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed completions: completions_clip_edit
+Installed completions: completions_glog
+Finished installing commands
+Finished installing commands
+Aider v0.63.2
+Model: gemini/gemini-1.5-flash-latest with whole edit format
+Git repo: .git with 11 files
+Repo-map: using 1024 tokens, auto refresh
+Use /help <question> for help, run "aider --help" to see cmd line args
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────> /glog
+
+* 6e0b4f3 - 2024-11-21 21:49 Abhijit (HEAD -> main, origin/main, origin/HEAD)
+| screen shot and log
+|
+* 1b4e612 - 2024-11-21 21:39 Abhijit
+| Initial extension commands added
+|
+* f6de313 - 2024-11-21 21:12 AbhijitKumarJ
+  Initial commit
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────> /files
+
+No files in chat
+> /zweb https://aider.chat/docs/config/editor.html
+
+Fetching https://aider.chat/docs/config/editor.html (retries left: 3)...
+Scraping https://aider.chat/docs/config/editor.html...
+... added to chat.
+Fetched in 19.96 seconds
+Word count: 623
+
+Based on the provided documentation, to change the default editor, you would need to modify your configuration files.
+Therefore, the files most likely to need changes are:
+
+ • sample.aider.conf.yml (if you are using a YAML config file)
+ • .env (if you are using environment variables to configure Aider)
+ • Your shell's configuration file (e.g., .bashrc, .zshrc, or similar)
+
+Please add these files to the chat so I can help you make the necessary changes.
+
+
+Tokens: 5.0k sent, 106 received. Cost: $0.00041 message, $0.00041 session.
+Add sample.aider.conf.yml to the chat? (Y)es/(N)o/(D)on't ask again [Yes]: N
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /stats
+
+No files in chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /add README.md
+
+Added G:\zwork4\Experimental_Aider_Extensions\README.md to the chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+README.md
+> /stats
+
+
+Total Statistics:
+Files: 1
+Lines: 69
+Words: 291
+Chars: 2,095
+
+By File Type:
+
+.md:
+  Files: 1
+  Lines: 69
+  Words: 291
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+README.md
+> /add sample.aider.conf.yml
+
+Added G:\zwork4\Experimental_Aider_Extensions\sample.aider.conf.yml to the chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+README.md sample.aider.conf.yml
+> /stats
+
+
+Total Statistics:
+Files: 2
+Lines: 440
+Words: 1,691
+Chars: 12,117
+
+By File Type:
+
+.md:
+  Files: 1
+  Lines: 69
+  Words: 291
+
+.yml:
+  Files: 1
+  Lines: 371
+  Words: 1,400
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+README.md sample.aider.conf.yml
+> /zdrop README.md
+
+Backed up 1 files to C:\Users\Abhijit\.aider\backups
+Removed README.md from the chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+sample.aider.conf.yml
+>
