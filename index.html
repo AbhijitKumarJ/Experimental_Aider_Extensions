@@ -190,7 +190,7 @@
                 loadingIndicator.style.display = "block";
                 markdownContent.innerHTML = "";
 
-                fetch(`${filename}`)
+                fetch(`custom_aider/docs/${filename}`)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error("Network response was not ok");
