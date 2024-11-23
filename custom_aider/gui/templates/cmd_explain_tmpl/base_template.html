@@ -1,0 +1,82 @@
+<!-- custom_aider/gui/templates/cmd_explain_tmpl/base_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Explanation - {{name}}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+    <style>
+    {{styles}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{type|title}}: {{name}}</h1>
+        
+        <!-- Function signature if applicable -->
+        {% if type in ('function', 'async function') %}
+        <div class="code">{{signature}}</div>
+        {% endif %}
+        
+        <!-- Docstring section -->
+        {% if docstring %}
+        <div class="section">
+            <h3>Documentation</h3>
+            <pre>{{docstring}}</pre>
+        </div>
+        {% endif %}
+        
+        <!-- Tabs -->
+        <div class="tab-container">
+            <button class="tab active" onclick="openTab(event, 'overview')">Overview</button>
+            <button class="tab" onclick="openTab(event, 'details')">Details</button>
+            <button class="tab" onclick="openTab(event, 'source')">Source</button>
+            <button class="tab" onclick="openTab(event, 'flow')">Flow</button>
+        </div>
+        
+        <!-- Overview tab -->
+        <div id="overview" class="tab-content active">
+            <h3>Purpose</h3>
+            {% if type in ('function', 'async function') %}
+            <p>This {{type}} accepts {{args|length}} arguments and performs the following operations:</p>
+            {% if calls %}
+            <ul>
+                {% for call in calls %}
+                <li>Calls {{call}}()</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endif %}
+        </div>
+        
+        <!-- Details tab -->
+        <div id="details" class="tab-content">
+            <p>Defined on line {{lineno}}</p>
+            <p>Contains {{line_count}} lines of code</p>
+            {% if has_loops %}
+            <p>Contains loop structures</p>
+            {% endif %}
+            {% if has_conditionals %}
+            <p>Contains conditional statements</p>
+            {% endif %}
+        </div>
+        
+        <!-- Source tab -->
+        <div id="source" class="tab-content">
+            <div class="code">
+                <pre>{{source}}</pre>
+            </div>
+        </div>
+        
+        <!-- Flow tab -->
+        <div id="flow" class="tab-content">
+            <div class="mermaid">
+                {{flow_diagram}}
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    {{scripts}}
+    </script>
+</body>
+</html>

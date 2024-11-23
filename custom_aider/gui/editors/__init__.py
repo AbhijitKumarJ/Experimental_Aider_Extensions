@@ -1,0 +1,1 @@
+"""Editor implementations for aider extensions"""

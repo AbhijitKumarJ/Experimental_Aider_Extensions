@@ -1,0 +1,1 @@
+"""Common GUI templates for aider extensions"""

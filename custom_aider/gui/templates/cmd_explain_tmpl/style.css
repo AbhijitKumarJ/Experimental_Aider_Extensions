@@ -1,0 +1,73 @@
+/* custom_aider/gui/templates/cmd_explain_tmpl/style.css */
+body {
+    font-family: -apple-system, sans-serif;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section {
+    margin: 20px 0;
+    padding: 10px;
+    border-left: 4px solid #2196f3;
+    background: #f8f9fa;
+}
+
+.code {
+    font-family: monospace;
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.tab {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #e9ecef;
+    margin-right: 5px;
+}
+
+.tab.active {
+    background: #2196f3;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.collapsible {
+    cursor: pointer;
+    padding: 10px;
+    background: #f1f8ff;
+    border: 1px solid #c8e1ff;
+    border-radius: 5px;
+}
+
+.content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

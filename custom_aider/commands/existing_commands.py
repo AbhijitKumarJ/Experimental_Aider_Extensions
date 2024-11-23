@@ -7,6 +7,12 @@ from pathlib import Path
 import re
 from ..commands_registry import CommandsRegistry
 
+#convert url to a valid filename
+def converturltofilename(url):
+    # Replace all non-alphanumeric characters with underscores
+    filename = re.sub(r'\W+', '_', url)
+    return filename
+
 # Web command wrapper - adds timing and retries
 def cmd_zweb(self, args):
     """Enhanced /web command with timing and retry support"""
@@ -15,7 +21,7 @@ def cmd_zweb(self, args):
         return
         
     start_time = time.time()
-    retries = 3
+    retries = 2
     
     while retries > 0:
         try:
@@ -36,12 +42,14 @@ def cmd_zweb(self, args):
                 #save content to a file - .aider/web
                 web_dir = Path.cwd() / '.aider' / 'web'
                 web_dir.mkdir(parents=True, exist_ok=True)
-                web_file = web_dir / f"{time.strftime('%Y%m%d_%H%M%S')}__.txt"# + f"{re.sub('[\W]+', '_', args)}.txt"
-                web_file.write_text(content)
-
+                saved_file_name = f"{time.strftime('%Y%m%d_%H%M%S')}__{converturltofilename(args)}.txt"
+                web_file = web_dir / saved_file_name
+                web_file.write_text(content, encoding='utf-8')
+                self.io.tool_output(f"Content saved to .aider/web/{saved_file_name}")
                 #self.io.tool_output("\n\n"+content)
-
-                return content
+                retries = 0
+                return
+                #return content
             else:
                 self.io.tool_error("No content found")
                 retries -= 1

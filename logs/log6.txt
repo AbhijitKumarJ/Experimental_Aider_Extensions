@@ -1,0 +1,158 @@
+$ python main.py
+Custom aider classes loaded and patched
+Loading command modules...
+Registering command: tkinter_editor
+Registered command cmd_tkinter_editor
+Loaded command module: custom_aider.commands.tkinter_command
+Registering command: glog
+Registered command cmd_glog
+Registered completions for glog
+Loaded command module: custom_aider.commands.git_commands
+Registering command: clip_edit
+Registered command cmd_clip_edit
+Registered completions for clip_edit
+Loaded command module: custom_aider.commands.clipboard_edits_command
+Registering command: createragfromdoc
+Registered command cmd_createragfromdoc
+Registered completions for createragfromdoc
+Registering command: queryragfromdoc
+Registered command cmd_queryragfromdoc
+Registered completions for queryragfromdoc
+Registering command: listrag
+Registered command cmd_listrag
+Registering command: deleterag
+Registered command cmd_deleterag
+Registered completions for deleterag
+Loaded command module: custom_aider.commands.docrag_commands
+Registering command: explain
+Registered command cmd_explain
+Registered completions for explain
+Loaded command module: custom_aider.commands.explain_command
+Registering command: files
+Registered command cmd_files
+Registering command: stats
+Registered command cmd_stats
+Loaded command module: custom_aider.commands.utility_commands
+Registering command: zadd
+Registered command cmd_zadd
+Registering command: zdrop
+Registered command cmd_zdrop
+Registering command: zcommit
+Registered command cmd_zcommit
+Registering command: zclear
+Registered command cmd_zclear
+Registering command: zmodel
+Registered command cmd_zmodel
+Registering command: zvoice
+Registered command cmd_zvoice
+Registering command: zweb
+Registered command cmd_zweb
+Loaded command module: custom_aider.commands.existing_commands
+Registering command: showcontext
+Registered command cmd_showcontext
+Loaded command module: custom_aider.commands.context_commands
+Registering command: customchat
+Registered command cmd_customchat
+Registered completions for customchat
+Loaded command module: custom_aider.commands.keywords_command
+Registering command: streamlit_editor
+Registered command cmd_streamlit_editor
+Loaded command module: custom_aider.commands.streamlit_editor_command
+Loaded custom commands: tkinter_editor, glog, clip_edit, createragfromdoc, queryragfromdoc, listrag, deleterag, explain, files, stats, zadd, zdrop, zcommit, zclear, zmodel, zvoice, zweb, showcontext, customchat, streamlit_editor
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+CustomCoder.create called
+Created coder: <class 'aider.coders.wholefile_coder.WholeFileCoder'>
+Found commands on coder
+Installing commands: ['tkinter_editor', 'glog', 'clip_edit', 'createragfromdoc', 'queryragfromdoc', 'listrag', 'deleterag', 'explain', 'files', 'stats', 'zadd', 'zdrop', 'zcommit', 'zclear', 'zmodel', 'zvoice', 'zweb', 'showcontext', 'customchat', 'streamlit_editor']
+Installing 20 commands...
+Installed command: cmd_tkinter_editor
+Installed command: cmd_glog
+Installed command: cmd_clip_edit
+Installed command: cmd_createragfromdoc
+Installed command: cmd_queryragfromdoc
+Installed command: cmd_listrag
+Installed command: cmd_deleterag
+Installed command: cmd_explain
+Installed command: cmd_files
+Installed command: cmd_stats
+Installed command: cmd_zadd
+Installed command: cmd_zdrop
+Installed command: cmd_zcommit
+Installed command: cmd_zclear
+Installed command: cmd_zmodel
+Installed command: cmd_zvoice
+Installed command: cmd_zweb
+Installed command: cmd_showcontext
+Installed command: cmd_customchat
+Installed command: cmd_streamlit_editor
+Installed completions: completions_glog
+Installed completions: completions_clip_edit
+Installed completions: completions_createragfromdoc
+Installed completions: completions_queryragfromdoc
+Installed completions: completions_deleterag
+Installed completions: completions_explain
+Installed completions: completions_customchat
+Finished installing commands
+Finished installing commands
+Aider v0.64.1
+Model: gemini/gemini-1.5-flash-latest with whole edit format
+Git repo: .git with 9 files
+Repo-map: using 1024 tokens, auto refresh
+Use /help <question> for help, run "aider --help" to see cmd line args
+
+Would you like to see what's new in this version? (Y)es/(N)o [Yes]:                                                             
+Opening release notes: https://aider.chat/HISTORY.html#release-notes
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /customchat @text-api                                                                                                         
+
+
+Expanded message:
+REST API with JSON responses
+
+Press Enter to send or Ctrl-C to cancel...
+^C────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────                                                                                                                              
+> /zweb https://aider.chat/HISTORY.html#release-notes                                                                           
+
+Fetching https://aider.chat/HISTORY.html#release-notes (retries left: 2)...
+Scraping https://aider.chat/HISTORY.html#release-notes...
+... added to chat.
+Fetched in 6.69 seconds
+Word count: 6,604
+Content saved to .aider/web/20241124_041612__https_aider_chat_HISTORY_html_release_notes.txt
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /git add .                                                                                                                    
+
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+> /add sample.aider.conf.yml                                                                                                    
+
+Added /home/abhijit/Documents/githubcodes/Experimental_Aider_Extensions/sample.aider.conf.yml to the chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+sample.aider.conf.yml                                                                                                           
+> /showcontext                                                                                                                  
+
+
+Saved context to 
+/home/abhijit/Documents/githubcodes/Experimental_Aider_Extensions/.aider/context/context_20241124_041837_AiderContext.html
+Opened in default browser
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+sample.aider.conf.yml                                                                                                           
+> /add ac.py                                                                                                                    
+
+Added /home/abhijit/Documents/githubcodes/Experimental_Aider_Extensions/ac.py to the chat
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ac.py sample.aider.conf.yml                                                                                                     
+> /explain calculator_tool --level=deep                                                                                         
+
+
+Analyzing calculator_tool from ac.py...
+
+Saved explanation to 
+/home/abhijit/Documents/githubcodes/Experimental_Aider_Extensions/.aider/explanations/explanation_calculator_tool_20241124_04201
+0.html
+Opened in default browser
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ac.py sample.aider.conf.yml                                                                                                     
+>  
+

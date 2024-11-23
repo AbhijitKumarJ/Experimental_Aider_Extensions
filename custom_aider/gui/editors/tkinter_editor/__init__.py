@@ -1,0 +1,1 @@
+"""TkinterEditor implementation for aider extensions"""

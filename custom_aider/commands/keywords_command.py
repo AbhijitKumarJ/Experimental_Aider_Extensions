@@ -107,5 +107,24 @@ def cmd_customchat(self, args):
     else:
         return self.cmd_code(expanded)
 
-# Register command
-CommandsRegistry.register("customchat", cmd_customchat)
+# Add completion support
+def completions_customchat(self):
+    """Provide completions for customchat command"""
+    # Get document text before cursor
+    # The completion engine automatically passes Document and CompleteEvent objects
+    # We only care about text before cursor to find potential @text- pattern
+    
+    # Load keywords 
+    keywords = load_keywords(self.io, root=self.coder.root) 
+    if not keywords:
+        return []
+
+    # Filter and format completions
+    completions = []
+    for keyword in keywords:
+        completions.append('@text-' + keyword)
+
+    return sorted(completions)
+
+# Register command with completions
+CommandsRegistry.register("customchat", cmd_customchat, completions_customchat)

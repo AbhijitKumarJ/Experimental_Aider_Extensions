@@ -9,9 +9,7 @@ Do not consider this in any way related to official distribution of aider.
 This is just for experimentation and not for serious use. If you want to use these files, 
 please verify the code yourself and experiment with it before using it to any work.
 
-
-
-Project Layout:
+## Project Layout
 ```
 ./
 ├── main.py           # New simple runner
@@ -21,15 +19,18 @@ Project Layout:
     ├── custom_aider_main.py
     ├── custom_coder.py
     ├── commands_registry.py
-    └── commands/
+    └── commands/     # Custom command implementations
         ├── __init__.py
+        ├── clipboard_edits_command.py
+        ├── context_commands.py
+        ├── docrag_commands.py
+        ├── existing_commands.py
+        ├── explain_command.py
         ├── git_commands.py
+        ├── keywords_command.py
+        ├── tkinter_command.py
         └── utility_commands.py
-        .
-        .
-        .
 ```
-
 
 ## Usage
 
@@ -39,261 +40,158 @@ Run the extended version of aider:
 python main.py
 ```
 
-## New Commands
+## Available Extended Commands
 
-/createragfromdoc Create a RAG from a text/markdown document
-    Usage: /createragfromdoc <nickname> <document_path>
-    
-    Creates a RAG (Retrieval Augmented Generation) index from a text/markdown document.
-    The document must be a text file - PDFs and other binary formats are not supported.
-    The RAG can later be queried using /queryragfromdoc.
-    
-    Example:
-        /createragfromdoc docs_rag /path/to/document.md
-    
-/customchat       Enhanced chat with keyword substitution support
-    Usage: /customchat <message>
-    
-    Your message can contain @text-keyword references that will be expanded
-    based on definitions in .aider.keywords.json.
-    
-    Example keywords file:
-    {
-        "api": "REST API with JSON responses",
-        "tests": "Unit tests using pytest with mocking"
-    }
-    
-    Example usage:
-    /customchat Create @text-tests for the login function
-    
-/deleterag        Delete a RAG
-    Usage: /deleterag <nickname>
-    
-    Permanently deletes the specified RAG and frees up disk space.
-    
+### Document Analysis and RAG Commands
 
-/files            List all files with details
-    Usage: /files [pattern]
-    
-    Shows files in chat with their sizes and last modified times
-    Optional pattern to filter files
-    
+- `/createragfromdoc` - Create a RAG from a text/markdown document
+  ```
+  Usage: /createragfromdoc <nickname> <document_path>
+  Creates a Retrieval Augmented Generation (RAG) index for enhanced document querying.
+  Example: /createragfromdoc docs_rag /path/to/document.md
+  requirements: same as help command advanced
+  ```
 
-/glog             Show pretty git log with branch graph and stats
-    Usage: /glog [options]
-    
-    Options:
-        -n N     Show last N commits (default: 10)
-        --all    Show all branches
-        --stat   Show changed files statistics
-    
+- `/queryragfromdoc` - Query an existing RAG
+  ```
+  Usage: /queryragfromdoc <nickname> <query>
+  Search through indexed documents for relevant content.
+  Example: /queryragfromdoc docs_rag "How do I use the git commands?"
+  requirements: same as help command advanced
+  ```
 
-/listrag          List all available RAGs
-    Usage: /listrag
-    
-    Shows information about all available RAGs including
-    their source documents, number of chunks, and creation dates.
-    
+- `/listrag` - List all available RAGs
+  ```
+  Usage: /listrag
+  Shows details about all RAGs including source documents and creation dates.
+  ```
 
-/queryragfromdoc  Query an existing RAG
-    Usage: /queryragfromdoc <nickname> <query>
-    
-    Searches the specified RAG for content relevant to your query
-    and returns the most similar passages.
-    
-    Example:
-        /queryragfromdoc docs_rag "How do I use the git commands?"
-    
+- `/deleterag` - Delete a RAG
+  ```
+  Usage: /deleterag <nickname>
+  Permanently removes a RAG and frees up disk space.
+  ```
 
-/showcontext      Save and display current chat context as HTML
-    Usage: /showcontext
-    
-    Saves the current chat context including files, messages, and metadata 
-    as a formatted HTML file and opens it in the default browser.
-    Files are saved in .aider/context/ with timestamps.
-    
-/stats            Show statistics about files in chat
-    Usage: /stats
-    
-    Shows total lines, words, characters for all files in chat
-    Breaks down by file type
-    
-/zadd             Enhanced /add command with validation and git status
+### Enhanced Chat Commands
 
-/zclear           Enhanced /clear command with history backup
+- `/customchat` - Enhanced chat with keyword substitution
+  ```
+  Usage: /customchat <message>
+  Supports @text-keyword references defined in .aider.keywords.json
+  Example: /customchat Create @text-tests for the login function
+  ```
 
-/zcommit          Enhanced /commit command with stats and message enhancement
+### Editor Commands
 
-/zdrop            Enhanced /drop command with confirmation and backup
+- `/clip-edit` - Apply clipboard edits
+  ```
+  Usage: /clip-edit <filename>
+  Applies code edits from clipboard (copied from ChatGPT/Claude) to specified files.
+  ```
 
-/zmodel           Enhanced /model command with model comparison
+- `/tkinter_editor` - Launch enhanced Tkinter editor
+  ```
+  Usage: /tkinter_editor [initial_text]
+  Opens a desktop GUI editor with syntax highlighting and keyword suggestions.
+  ```
 
-/zvoice           Enhanced /voice command with confidence check and retry
+### Git Integration Commands
 
-/zweb             Enhanced /web command with saving scraped data in .aider/web folder and timing and retry support
+- `/glog` - Enhanced git log
+  ```
+  Usage: /glog [options]
+  Options:
+    -n N     Show last N commits (default: 10)
+    --all    Show all branches
+    --stat   Show changed files statistics
+  ```
 
-/clip-edit        Apply clipboard contents as edits to specified files
-    Usage: /clip-edit <filename>
-    
-    Gets code edits from clipboard (copied from ChatGPT/Claude) and applies them to the specified file.
-    The clipboard content should contain code changes in a supported format (diff, whole file, etc).
-   
-## Development
+- `/zadd` - Enhanced add command
+  ```
+  Usage: /zadd <files>
+  Adds files with validation and git status display.
+  ```
 
-To add new commands:
+- `/zcommit` - Enhanced commit command
+  ```
+  Usage: /zcommit [message]
+  Commits changes with enhanced messages and file statistics.
+  ```
 
-1. Create a new module in `custom_aider/commands/`
-2. Define command functions with docstrings
-3. Register commands using `CommandsRegistry.register()`
+### Context and Analysis Commands
+
+- `/showcontext` - Save and display chat context
+  ```
+  Usage: /showcontext
+  Creates an HTML report of current chat context including files and messages.
+  ```
+
+- `/explain` - Interactive code explanation
+  ```
+  Usage: /explain <function/class> [--level basic/deep/eli5]
+  Creates interactive HTML documentation with diagrams and analysis.
+  requirements: pip install jinja2
+  ```
+
+- `/files` - List files with details
+  ```
+  Usage: /files [pattern]
+  Shows files in chat with sizes and modification times.
+  ```
+
+- `/stats` - Show file statistics
+  ```
+  Usage: /stats
+  Displays lines, words, and character counts by file type.
+  ```
+
+### Enhanced Base Commands
+
+- `/zclear` - Enhanced clear with history backup
+- `/zdrop` - Enhanced drop with confirmation
+- `/zmodel` - Enhanced model selection with comparison
+- `/zvoice` - Enhanced voice command with confidence check and retry
+- `/zweb` - Enhanced web command with saving scraped data in .aider/web folder and timing and retry support
+
+## Configuration
+
+### Keywords Configuration
+
+Create a `.aider.keywords.json` file in your project root:
+
+```json
+{
+    "api": "REST API with JSON responses",
+    "mvc": "Model-View-Controller architecture pattern",
+    "tests": "Unit tests using pytest with mocking",
+    "docs": "Docstrings following Google style guide"
+}
 ```
 
+### Model Configuration
 
+Create a `sample.aider.conf.yml` file:
 
-## For rag related commands, help system should work properly, so first check if help is installed properly.
-
-```
-$ aider
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Aider v0.64.1
-Model: gemini/gemini-1.5-flash-latest with whole edit format
-Git repo: .git with 8 files
-Repo-map: using 1024 tokens, auto refresh
-VSCode terminal detected, pretty output has been disabled.
-Use /help <question> for help, run "aider --help" to see cmd line args
-──────────────────────────────────────────────────────────────────────────────────────────────────────────
-> /help how to configure llm                                                                                       
-
-To use interactive /help you need to install the help extras
-
-python -m pip install --upgrade --upgrade-strategy only-if-needed 'aider-chat[help]' --extra-index-url 
-https://download.pytorch.org/whl/cpu
-Run pip install? (Y)es/(N)o [Yes]:                                                                                 
-
-Installing: python -m pip install --upgrade --upgrade-strategy only-if-needed 'aider-chat[help]' --extra-index-url https://download.pytorch.org/whl/cpu
-Installing...
+```yaml
+model: gemini/gemini-1.5-flash-latest
+map-tokens: 1024
+subtree-only: true
 ```
 
+## Directory Structure
 
-This provides a clean, maintainable structure for extending aider with new commands. The CommandsRegistry manages registration and installation of commands, while the custom coder ensures proper initialization. Each command is well-documented and properly integrated with aider's existing functionality.
+The extension creates several directories for storing data:
 
-You can easily add more commands by creating new modules in the commands directory and registering them with the CommandsRegistry. The extension system is modular and type-safe, making it easy to maintain and extend further.
+- `.aider/rags/` - Stores RAG indexes and metadata
+- `.aider/context/` - Stores context HTML reports
+- `.aider/web/` - Stores scraped web content
+- `.aider/backups/` - Stores file backups
+- `.aider/explanations/` - Stores code explanation reports
 
+## Contributing
 
+Feel free to experiment with these extensions and suggest improvements. This is an experimental project meant to explore potential new features for the Aider project.
 
+## License
 
-
-
-
-## Samples:
-
---------------------------------------------------------------------------------------------------
-> /zweb https://aider.chat/docs/install.html                                                                                          
-
-Fetching https://aider.chat/docs/install.html (retries left: 3)...
-Scraping https://aider.chat/docs/install.html...
-... added to chat.
-Fetched in 1.15 seconds
-Word count: 119
-I understand the instructions.  However, you have only provided the content of a webpage, not a code file.  I cannot suggest code     
-changes without access to the code itself.  Please provide the code files you want me to review.                                      
-
-
-Tokens: 2.5k sent, 48 received. Cost: $0.00020 message, $0.00035 session.
-───────────────────────────────────────────────────────────────────────────────────────────────────────────
-
-------------------------------------------------------------------------------------------------
-ask> /customchat how to do @text-tests                                                                                                
-
-
-Expanded message:
-how to do Unit tests using pytest with mocking
-
-Press Enter to send or Ctrl-C to cancel...
-
------------------------------------------------------------------------------------------------
-
-> /createragfromdoc lancedblessons lancedb_lessons_ragsource.md                                                                       
-
-Creating RAG 'lancedblessons'...
-Successfully created RAG 'lancedblessons' with 222 chunks
-───────────────────────────────────────────────────────────────────────────────────────────────────────────
----------------------------------------------------------------------------------------------------
-> /listrag                                                                                                                            
-
-Available RAGs:
-
-lancedblessons:
-  Source: /home/Experimental_Aider_Extensions/lancedb_lessons_ragsource.md
-  Chunks: 222
-  Created: 2024-11-23 06:10
-───────────────────────────────────────────────────────────────────────────────────────────────────────────
-------------------------------------------------------------------------------------------------------
-
-> /queryragfromdoc lancedblessons "how to save a record in lance db?"                                                                 
-
-Querying RAG 'lancedblessons'...
-For the query:
-
-"how to save a record in lance db?"
-
-Search results from RAG 'lancedblessons':
-
-
---- Result 1 (Relevance: 77.69%) ---
-### Concurrent Access
-```python
-# Configure for concurrent access
-db = lancedb.connect(
-    "s3+ddb://bucket/path",
-    storage_options={
-        "ddb_table_name": "lance_locks"
-    }
-)
-```
-
-Source: lancedb_lessons_ragsource.md
-
---- Result 2 (Relevance: 77.64%) ---
-## 9. Backup and Recovery
-
-```python
-class BackupManager:
-    def __init__(self, source_uri, backup_uri):
-        self.source = lancedb.connect(source_uri)
-        self.backup = lancedb.connect(backup_uri)
-        
-    async def create_backup(self, table_name):
-        source_table = self.source.open_table(table_name)
-        data = await source_table.to_arrow()
-        backup_table = self.backup.create_table(
-            f"{table_name}_backup_{int(time.time())}",
-            data
-        )
-        
-    async def restore_from_backup(self, backup_name, target_name):
-        backup_table = self.backup.open_table(backup_name)
-        data = await backup_table.to_arrow()
-        self.source.create_table(target_name, data)
-```
-
-Source: lancedb_lessons_ragsource.md
-
---- Result 3 (Relevance: 77.34%) ---
-### Local Storage Optimization
-```python
-# Configure for local performance
-db = lancedb.connect(
-    "/path/to/storage",
-    read_consistency_interval=timedelta(seconds=0)  # Strong consistency
-)
-```
-
-Source: lancedb_lessons_ragsource.md
-
---- End of results ---
-───────────────────────────────────────────────────────────────────────────────────────────────────────────
-------------------------------------------------------------------------------------------------
-
-
-
-
+This project is licensed under the Apache License - see the LICENSE file for details.

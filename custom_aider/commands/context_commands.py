@@ -38,8 +38,17 @@ pre {{ margin: 0; padding: 10px; overflow-x: auto; }}
 </html>
 """
 
+def escape_html(text):
+    """Escape HTML special characters to their HTML entities"""
+    return (str(text)
+            .replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace('"', "&quot;")
+            .replace("'", "&#39;"))
+
 def format_messages(messages):
-    """Format chat messages into HTML"""
+    """Format chat messages into HTML with proper escaping"""
     html = ""
     for msg in messages:
         role = msg.get('role', '')
@@ -55,9 +64,9 @@ def format_messages(messages):
         if role == "user" and "Here are summaries of some files present in my git repo" in content:
             css_class = "repo-map chat-message"
         
-        html += f'<div class="{css_class}">\n'
-        html += f'<strong>{role.upper()}</strong>\n'
-        html += f'<pre>{content}</pre>\n'
+        html += f'<div class="{escape_html(css_class)}">\n'
+        html += f'<strong>{escape_html(role.upper())}</strong>\n'
+        html += f'<pre>{escape_html(content)}</pre>\n'
         html += '</div>\n'
         
     return html
@@ -118,10 +127,10 @@ def cmd_showcontext(self, args):
     # Model info
     content.append('<div class="metadata-item">')
     content.append('<h3>Model Information</h3>')
-    content.append(f'<p>Main Model: {self.coder.main_model.name}</p>')
-    content.append(f'<p>Edit Format: {self.coder.edit_format}</p>')
+    content.append(f'<p>Main Model: {escape_html(self.coder.main_model.name)}</p>')
+    content.append(f'<p>Edit Format: {escape_html(self.coder.edit_format)}</p>')
     if self.coder.main_model.weak_model and self.coder.main_model.weak_model != self.coder.main_model:
-        content.append(f'<p>Weak Model: {self.coder.main_model.weak_model.name}</p>')
+        content.append(f'<p>Weak Model: {escape_html(self.coder.main_model.weak_model.name)}</p>')
     content.append('</div>')
     
     # Files in chat
@@ -150,12 +159,12 @@ def cmd_showcontext(self, args):
             repo = self.coder.repo.repo
             branch = repo.active_branch.name
             commit = repo.head.commit
-            content.append(f'<p>Branch: {branch}</p>')
-            content.append(f'<p>Last Commit: {commit.hexsha[:7]}</p>')
-            content.append(f'<p>Author: {commit.author}</p>')
-            content.append(f'<p>Date: {commit.committed_datetime}</p>')
+            content.append(f'<p>Branch: {escape_html(branch)}</p>')
+            content.append(f'<p>Last Commit: {escape_html(commit.hexsha[:7])}</p>')
+            content.append(f'<p>Author: {escape_html(str(commit.author))}</p>')
+            content.append(f'<p>Date: {escape_html(str(commit.committed_datetime))}</p>')
         except Exception as e:
-            content.append(f'<p>Error getting git info: {e}</p>')
+            content.append(f'<p>Error getting git info: {escape_html(str(e))}</p>')
         content.append('</div>')
     
     content.append('</div>')  # End metadata section
@@ -171,15 +180,15 @@ def cmd_showcontext(self, args):
     content.append('<div class="section">')
     content.append('<h2>File Contents</h2>')
     for fname in sorted(self.coder.get_inchat_relative_files()):
-        content.append(f'<h3>{fname}</h3>')
+        content.append(f'<h3>{escape_html(fname)}</h3>')
         try:
             path = Path(self.coder.abs_root_path(fname))
             file_content = path.read_text()
             content.append('<div class="file-content">')
-            content.append(f'<pre>{file_content}</pre>')
+            content.append(f'<pre>{escape_html(file_content)}</pre>')
             content.append('</div>')
         except Exception as e:
-            content.append(f'<p>Error reading file: {e}</p>')
+            content.append(f'<p>Error reading file: {escape_html(str(e))}</p>')
     content.append('</div>')
     
     # Generate full HTML
@@ -189,7 +198,8 @@ def cmd_showcontext(self, args):
     )
     
     # Save the file
-    output_file = context_dir / f'context_{timestamp}.html'
+    output_file_name = f'context_{timestamp}_AiderContext.html'
+    output_file = context_dir / output_file_name
     output_file.write_text(html, encoding="utf-8")
     
     self.io.tool_output(f"\nSaved context to {output_file}")
