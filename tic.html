@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tic-Tac-Toe</title>
+<style>
+body {
+  background-color: #222;
+  color: #eee;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  grid-gap: 5px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  border: 2px solid #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  cursor: pointer;
+}
+
+.cell:hover {
+  background-color: #444;
+}
+
+.status {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 24px;
+}
+</style>
+</head>
+<body>
+
+<div class="board" id="board">
+  <div class="cell" data-index="0"></div>
+  <div class="cell" data-index="1"></div>
+  <div class="cell" data-index="2"></div>
+  <div class="cell" data-index="3"></div>
+  <div class="cell" data-index="4"></div>
+  <div class="cell" data-index="5"></div>
+  <div class="cell" data-index="6"></div>
+  <div class="cell" data-index="7"></div>
+  <div class="cell" data-index="8"></div>
+</div>
+
+<div class="status" id="status">X's turn</div>
+
+<script>
+const board = document.getElementById('board');
+const status = document.getElementById('status');
+let currentPlayer = 'X';
+let gameBoard = ['', '', '', '', '', '', '', '', ''];
+let gameActive = true;
+
+const winningConditions = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+  [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+  [0, 4, 8], [2, 4, 6]             // Diagonals
+];
+
+const handleCellClick = (e) => {
+  const index = parseInt(e.target.dataset.index);
+  if (gameBoard[index] === '' && gameActive) {
+    gameBoard[index] = currentPlayer;
+    e.target.textContent = currentPlayer;
+    checkWin();
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+    status.textContent = `${currentPlayer}'s turn`;
+  }
+};
+
+const checkWin = () => {
+  for (const condition of winningConditions) {
+    const [a, b, c] = condition;
+    if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+      status.textContent = `${gameBoard[a]} wins!`;
+      gameActive = false;
+      return;
+    }
+  }
+  if (!gameBoard.includes('')) {
+    status.textContent = "It's a draw!";
+    gameActive = false;
+  }
+};
+
+board.addEventListener('click', (e) => {
+  if (e.target.classList.contains('cell')) {
+    handleCellClick(e);
+  }
+});
+</script>
+
+</body>
+</html>

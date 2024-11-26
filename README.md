@@ -9,184 +9,159 @@ Do not consider this in any way related to official distribution of aider.
 This is just for experimentation and not for serious use. If you want to use these files, 
 please verify the code yourself and experiment with it before using it to any work.
 
-## Project Layout
+## Features
+
+- RAG (Retrieval Augmented Generation) support for document querying
+- Advanced chat customization with keyword substitution
+- Enhanced Git integration with better visualizations
+- Code analysis and explanation tools
+- Interactive context management and visualization
+- GUI editors with syntax highlighting
+- Web and voice command enhancements
+- Template support for common development tasks
+
+## Installation
+
+```bash
+# First install aider
+pip install aider-chat
+
+# Clone this repository
+git clone https://github.com/YourUsername/aider-extension.git
+cd aider-extension
+
+# Install additional dependencies
+pip install jinja2
+pip install llama-index-core  
+pip install llama-index-embeddings-huggingface
+pip install pygments
+pip install pyperclip
+pip install streamlit
+```
+
+## Project Structure
+
 ```
 ./
-├── main.py           # New simple runner
-└── custom_aider/
+├── main.py               # New simple runner
+├── .extn_aider/           
+│   ├── command_templates/ # Command templates
+│   │   ├── load_templated/
+│   │   └── load_templated_script/
+│   └── All_Commands/     # Reference implementations (not used directly)
+│       ├── docrag_commands/
+│       ├── git_commands/
+│       ├── context_commands/
+│       └── ...
+└── custom_aider/         # Core extension implementation
     ├── __init__.py
-    ├── monkey_patch.py
+    ├── monkey_patch.py   # Early patching system
     ├── custom_aider_main.py
     ├── custom_coder.py
     ├── commands_registry.py
-    └── commands/     # Custom command implementations
-        ├── __init__.py
-        ├── clipboard_edits_command.py
-        ├── context_commands.py
-        ├── docrag_commands.py
-        ├── existing_commands.py
-        ├── explain_command.py
-        ├── git_commands.py
-        ├── keywords_command.py
-        ├── tkinter_command.py
-        └── utility_commands.py
+    ├── commands/         # Active command implementations
+    │   ├── docrag_commands.py
+    │   ├── git_commands.py
+    │   └── ...
+    ├── gui/             # GUI components
+    └── docs/            # Documentation
 ```
 
-## Usage
+## Basic Usage
 
-Run the extended version of aider: 
-
+1. Start the extended version:
 ```bash
 python main.py
 ```
 
-## Available Extended Commands
+2. Use new commands in chat:
+```
+> /help  # See available commands
+> /createragfromdoc docs ./documentation.md  # Create a RAG
+> /glog -n 5  # Show git history
+```
 
-### Document Analysis and RAG Commands
+## Available Commands
 
-- `/createragfromdoc` - Create a RAG from a text/markdown document
-  ```
-  Usage: /createragfromdoc <nickname> <document_path>
-  Creates a Retrieval Augmented Generation (RAG) index for enhanced document querying.
-  Example: /createragfromdoc docs_rag /path/to/document.md
-  requirements: same as help command advanced
-  ```
+Note: For detailed documentation on each command, see the README.md files in `.extn_aider/All_Commands/*/`
 
-- `/queryragfromdoc` - Query an existing RAG
-  ```
-  Usage: /queryragfromdoc <nickname> <query>
-  Search through indexed documents for relevant content.
-  Example: /queryragfromdoc docs_rag "How do I use the git commands?"
-  requirements: same as help command advanced
-  ```
+### Document Processing
+- `/createragfromdoc` - Create a RAG from document
+- `/queryragfromdoc` - Query existing RAGs
+- `/listrag` - List available RAGs
+- `/deleterag` - Remove a RAG
 
-- `/listrag` - List all available RAGs
-  ```
-  Usage: /listrag
-  Shows details about all RAGs including source documents and creation dates.
-  ```
-
-- `/deleterag` - Delete a RAG
-  ```
-  Usage: /deleterag <nickname>
-  Permanently removes a RAG and frees up disk space.
-  ```
-
-### Enhanced Chat Commands
-
-- `/customchat` - Enhanced chat with keyword substitution
-  ```
-  Usage: /customchat <message>
-  Supports @text-keyword references defined in .aider.keywords.json
-  Example: /customchat Create @text-tests for the login function
-  ```
-
-### Editor Commands
-
+### Enhanced Chat
+- `/customchat` - Chat with keyword substitution
 - `/clip-edit` - Apply clipboard edits
-  ```
-  Usage: /clip-edit <filename>
-  Applies code edits from clipboard (copied from ChatGPT/Claude) to specified files.
-  ```
+- `/tkinter_editor` - Launch desktop editor
 
-- `/tkinter_editor` - Launch enhanced Tkinter editor
-  ```
-  Usage: /tkinter_editor [initial_text]
-  Opens a desktop GUI editor with syntax highlighting and keyword suggestions.
-  ```
-
-### Git Integration Commands
-
+### Git Integration
 - `/glog` - Enhanced git log
-  ```
-  Usage: /glog [options]
-  Options:
-    -n N     Show last N commits (default: 10)
-    --all    Show all branches
-    --stat   Show changed files statistics
-  ```
+- `/zadd` - Smart git add
+- `/zcommit` - Enhanced commit with stats
 
-- `/zadd` - Enhanced add command
-  ```
-  Usage: /zadd <files>
-  Adds files with validation and git status display.
-  ```
-
-- `/zcommit` - Enhanced commit command
-  ```
-  Usage: /zcommit [message]
-  Commits changes with enhanced messages and file statistics.
-  ```
-
-### Context and Analysis Commands
-
-- `/showcontext` - Save and display chat context
-  ```
-  Usage: /showcontext
-  Creates an HTML report of current chat context including files and messages.
-  ```
-
+### Context Management
+- `/showcontext` - Save/display chat context
 - `/explain` - Interactive code explanation
-  ```
-  Usage: /explain <function/class> [--level basic/deep/eli5]
-  Creates interactive HTML documentation with diagrams and analysis.
-  requirements: pip install jinja2
-  ```
-
 - `/files` - List files with details
-  ```
-  Usage: /files [pattern]
-  Shows files in chat with sizes and modification times.
-  ```
-
 - `/stats` - Show file statistics
-  ```
-  Usage: /stats
-  Displays lines, words, and character counts by file type.
-  ```
 
-### Enhanced Base Commands
-
-- `/zclear` - Enhanced clear with history backup
-- `/zdrop` - Enhanced drop with confirmation
-- `/zmodel` - Enhanced model selection with comparison
-- `/zvoice` - Enhanced voice command with confidence check and retry
-- `/zweb` - Enhanced web command with saving scraped data in .aider/web folder and timing and retry support
+### Other Commands
+- `/zvoice` - Enhanced voice command
+- `/zweb` - Enhanced web scraping
+- `/load_templated` - Load command templates
+- `/load_templated_script` - Load script templates
 
 ## Configuration
 
-### Keywords Configuration
-
-Create a `.aider.keywords.json` file in your project root:
-
-```json
-{
-    "api": "REST API with JSON responses",
-    "mvc": "Model-View-Controller architecture pattern",
-    "tests": "Unit tests using pytest with mocking",
-    "docs": "Docstrings following Google style guide"
-}
-```
-
-### Model Configuration
-
-Create a `sample.aider.conf.yml` file:
-
+1. Create `.aider.conf.yml`:
 ```yaml
 model: gemini/gemini-1.5-flash-latest
 map-tokens: 1024
 subtree-only: true
 ```
 
-## Directory Structure
+2. Create `.extn_aider.keywords.json` for chat substitutions:
+```json
+{
+    "api": "REST API with JSON responses",
+    "tests": "Unit tests using pytest"
+}
+```
 
-The extension creates several directories for storing data:
+## Extension System Architecture
 
-- `.aider/rags/` - Stores RAG indexes and metadata
-- `.aider/context/` - Stores context HTML reports
-- `.aider/web/` - Stores scraped web content
-- `.aider/backups/` - Stores file backups
-- `.aider/explanations/` - Stores code explanation reports
+The extension system uses several key components:
+
+1. **Command Registry** (`commands_registry.py`)
+   - Central registration of commands
+   - Manages completion handlers
+   - Handles command help text
+
+2. **Custom Coder** (`custom_coder.py`) 
+   - Extends Aider's base Coder
+   - Installs custom commands
+   - Provides extension hooks
+
+3. **Monkey Patching** (`monkey_patch.py`)
+   - Early class patching
+   - Safe core modifications
+   - Path management
+
+4. **Template Systems**
+   - Command templates
+   - Script templates 
+   - Project scaffolding
+
+For more technical details, see `custom_aider/docs/extension-docs.md`.
+
+## Repository Organization 
+
+- `.extn_aider/All_Commands/` contains reference implementations and documentation for each command type
+- Active command implementations go in `custom_aider/commands/`
+- GUI components in `custom_aider/gui/`
+- Documentation in `custom_aider/docs/`
 
 ## Contributing
 
