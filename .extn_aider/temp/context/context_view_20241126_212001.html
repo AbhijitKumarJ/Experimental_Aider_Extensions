@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aider Context View - 2024-11-26 21:20:01</title>
+    <style>
+    body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header {
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.model-info {
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.model-info p {
+    margin: 5px 0;
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e9ecef;
+}
+
+button.primary {
+    background: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+button.primary:hover {
+    background: #0056b3;
+}
+
+.section {
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.section-header {
+    padding: 10px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.count {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.content {
+    padding: 15px;
+}
+
+.file-item {
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.file-header {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: #f8f9fa;
+}
+
+.file-header h3 {
+    margin: 0 10px;
+    font-size: 1em;
+}
+
+.file-info {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.file-preview {
+    width: 100%;
+    min-height: 3em;
+    max-height: 9em;
+    padding: 10px;
+    margin: 0;
+    border: none;
+    border-top: 1px solid #eee;
+    background: #f8f9fa;
+    font-family: "Consolas", "Monaco", monospace;
+    font-size: 0.9em;
+    resize: vertical;
+}
+
+.message {
+    margin: 10px 0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    background: #f8f9fa;
+}
+
+.role {
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.message-content {
+    width: 100%;
+    min-height: 3em;
+    max-height: 9em;
+    padding: 10px;
+    margin: 0;
+    border: none;
+    font-family: "Consolas", "Monaco", monospace;
+    font-size: 0.9em;
+    resize: vertical;
+    background: white;
+}
+
+.user { border-left: 4px solid #2196f3; }
+.assistant { border-left: 4px solid #4caf50; }
+.system { border-left: 4px solid #ff9800; }
+
+.git-info {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #666;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Aider Chat Context</h1>
+            <p>Generated: 2024-11-26 21:20:01</p>
+            <div class="model-info">
+                <p>Main Model: gemini/gemini-1.5-flash-latest</p>
+                <p>Edit Format: whole</p>
+            </div>
+            
+            <div class="controls">
+                <button onclick="selectAll()">Select All</button>
+                <button onclick="deselectAll()">Deselect All</button>
+                <button onclick="exportSelected()" class="primary">Export Selected</button>
+            </div>
+        </div>
+        
+        <!-- Files -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Files in Chat <span class="count">(2 files)</span></h2>
+            </div>
+            <div class="content">
+                
+                <div class="file-item">
+                    <div class="file-header">
+                        <input type="checkbox" id="file_1_check" checked>
+                        <h3>.gitignore</h3>
+                        <span class="file-info">
+                            3.4 kB | 169 lines
+                        </span>
+                    </div>
+                    <textarea class="file-preview" readonly>.aider/*
+.aider.*/*
+.aider.conf.yml
+.aider.input.history
+.aider.chat.history.md
+.env
+.env.local
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/</textarea>
+                </div>
+                
+                <div class="file-item">
+                    <div class="file-header">
+                        <input type="checkbox" id="file_2_check" checked>
+                        <h3>index.html</h3>
+                        <span class="file-info">
+                            8.1 kB | 258 lines
+                        </span>
+                    </div>
+                    <textarea class="file-preview" readonly><!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Modern Markdown Viewer</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/2.1.3/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css"
+        />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap");
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "Inter", sans-serif;
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                display: flex;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            #file-list {
+                width: 300px;
+                min-width: 200px;
+                max-width: 50%;
+                height: 100%;
+                overflow-y: auto;
+                background-color: #252526;
+                padding: 20px;
+                border-right: 1px solid #333;
+                transition: width 0.1s ease;
+            }
+
+            #file-list ul {
+                list-style-type: none;
+            }
+
+            #file-list li {
+                cursor: pointer;
+                padding: 10px;
+                margin-bottom: 5px;
+                background-color: #2d2d2d;
+                border-radius: 5px;
+                transition: all 0.3s ease;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            #file-list li:hover {
+                background-color: #3a3a3a;
+                transform: translateX(5px);
+            }
+
+            #resizer {
+                width: 10px;
+                height: 100%;
+                background-color: #333;
+                cursor: ew-resize;
+            }
+
+            #markdown-content {
+                flex-grow: 1;
+                padding: 30px;
+                overflow-y: auto;
+            }
+
+            #content {
+                max-width: 800px;
+                margin: 0 auto;
+                line-height: 1.6;
+            }
+
+            #content h1,
+            #content h2,
+            #content h3,
+            #content h4,
+            #content h5,
+            #content h6 {
+                margin-top: 1.5em;
+                margin-bottom: 0.5em;
+                color: #61afef;
+            }
+
+            #content p {
+                margin-bottom: 1em;
+            }
+
+            #content code {
+                background-color: #2c313a;
+                padding: 2px 4px;
+                border-radius: 3px;
+                font-family: "Consolas", monospace;
+            }
+
+            #content pre {
+                background-color: #282c34;
+                padding: 15px;
+                border-radius: 5px;
+                overflow-x: auto;
+                margin-bottom: 1em;
+            }
+
+            #content img {
+                max-width: 100%;
+                border-radius: 5px;
+                margin: 1em 0;
+            }
+
+            #content a {
+                color: #61afef;
+                text-decoration: none;
+                border-bottom: 1px solid #61afef;
+                transition: all 0.3s ease;
+            }
+
+            #content a:hover {
+                color: #c678dd;
+                border-bottom-color: #c678dd;
+            }
+
+            .loading {
+                display: none;
+                text-align: center;
+                padding: 20px;
+                font-style: italic;
+                color: #888;
+            }
+
+            /* Scrollbar Styling */
+            ::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            ::-webkit-scrollbar-track {
+                background: #1e1e1e;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: #888;
+                border-radius: 4px;
+            }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="file-list"></div>
+        <div id="resizer"></div>
+        <div id="markdown-content">
+            <div id="loading" class="loading">Loading...</div>
+            <div id="content"></div>
+        </div>
+
+        <script>
+            const markdownFiles = [
+                "user-guide.md",
+"extension-docs.md",
+
+            ];
+
+            const fileList = document.getElementById("file-list");
+            const markdownContent = document.getElementById("content");
+            const loadingIndicator = document.getElementById("loading");
+            const resizer = document.getElementById("resizer");
+
+            // Create file list
+            const ul = document.createElement("ul");
+            markdownFiles.forEach((file) => {
+                const li = document.createElement("li");
+                li.textContent = file;
+                li.onclick = () => loadMarkdownFile(file);
+                ul.appendChild(li);
+            });
+            fileList.appendChild(ul);
+
+            // Load markdown file
+            function loadMarkdownFile(filename) {
+                loadingIndicator.style.display = "block";
+                markdownContent.innerHTML = "";
+
+                fetch(`custom_aider/docs/${filename}`)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.text();
+                    })
+                    .then((content) => {
+                        renderMarkdown(content);
+                        loadingIndicator.style.display = "none";
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        markdownContent.innerHTML = `<p>Error loading ${filename}: ${error.message}</p>`;
+                        loadingIndicator.style.display = "none";
+                    });
+            }
+
+            // Render markdown function
+            function renderMarkdown(content) {
+                marked.setOptions({
+                    highlight: function (code, lang) {
+                        const language = hljs.getLanguage(lang)
+                            ? lang
+                            : "plaintext";
+                        return hljs.highlight(code, { language }).value;
+                    },
+                    langPrefix: "hljs language-",
+                });
+                markdownContent.innerHTML = marked(content);
+            }
+
+            // Resizable panel functionality
+            let isResizing = false;
+
+            resizer.addEventListener("mousedown", (e) => {
+                isResizing = true;
+                document.addEventListener("mousemove", resize);
+                document.addEventListener("mouseup", stopResize);
+            });
+
+            function resize(e) {
+                if (!isResizing) return;
+
+                const newWidth = e.clientX;
+                const minWidth = 200;
+                const maxWidth = window.innerWidth / 2;
+
+                if (newWidth >= minWidth && newWidth <= maxWidth) {
+                    fileList.style.width = newWidth + "px";
+                }
+            }
+
+            function stopResize() {
+                isResizing = false;
+                document.removeEventListener("mousemove", resize);
+                document.removeEventListener("mouseup", stopResize);
+            }
+
+            // Load the first file by default
+            if (markdownFiles.length > 0) {
+                loadMarkdownFile(markdownFiles[0]);
+            }
+        </script>
+    </body>
+</html></textarea>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Chat History <span class="count">(2 messages)</span></h2>
+            </div>
+            <div class="content">
+                
+                <div class="message user">
+                    <div class="message-header">
+                        <input type="checkbox" id="message_1_check" checked>
+                        <span class="role">USER</span>
+                    </div>
+                    <textarea class="message-content" readonly>For the query:
+
+"how do i chunk data?"
+
+Search results from RAG 'lancedblessons':
+
+
+--- Result 1 (Relevance: 74.20%) ---
+### From Pandas DataFrame
+```python
+import pandas as pd
+
+# Create DataFrame
+df = pd.DataFrame({
+    "vector": [[1.1, 1.2], [2.1, 2.2]],
+    "text": ["sample 1", "sample 2"]
+})
+
+# Create table from DataFrame
+table = db.create_table("pandas_table", data=df)
+```
+
+Source: lancedb_lessons_ragsource.md
+
+--- Result 2 (Relevance: 73.19%) ---
+## 6. Advanced Query Techniques
+
+Source: lancedb_lessons_ragsource.md
+
+--- Result 3 (Relevance: 73.07%) ---
+### From Python Data Structures
+```python
+import lancedb
+
+# Connect to database
+db = lancedb.connect("~/.lancedb")
+
+# Load from list of dictionaries
+data = [
+    {"vector": [1.1, 1.2], "text": "sample 1"},
+    {"vector": [2.1, 2.2], "text": "sample 2"}
+]
+table = db.create_table("basic_table", data)
+```
+
+Source: lancedb_lessons_ragsource.md
+
+--- End of results ---</textarea>
+                </div>
+                
+                <div class="message assistant">
+                    <div class="message-header">
+                        <input type="checkbox" id="message_2_check" checked>
+                        <span class="role">ASSISTANT</span>
+                    </div>
+                    <textarea class="message-content" readonly>Ok.</textarea>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="git-info">
+            <p>Branch: main | Latest Commit: c81f696 | 2024-11-24 04:41:11+05:30</p>
+        </div>
+        
+    </div>
+    
+    <!-- Pass data to JavaScript -->
+    <script type="application/json" id="context-data">
+        {"files": [{"content": ".aider/*\n.aider.*/*\n.aider.conf.yml\n.aider.input.history\n.aider.chat.history.md\n.env\n.env.local\n# Byte-compiled / optimized / DLL files\n__pycache__/\n*.py[cod]\n*$py.class\n\n# C extensions\n*.so\n\n# Distribution / packaging\n.Python\nbuild/\ndevelop-eggs/\ndist/\ndownloads/\neggs/\n.eggs/\nlib/\nlib64/\nparts/\nsdist/\nvar/\nwheels/\nshare/python-wheels/\n*.egg-info/\n.installed.cfg\n*.egg\nMANIFEST\n\n# PyInstaller\n#  Usually these files are written by a python script from a template\n#  before PyInstaller builds the exe, so as to inject date/other infos into it.\n*.manifest\n*.spec\n\n# Installer logs\npip-log.txt\npip-delete-this-directory.txt\n\n# Unit test / coverage reports\nhtmlcov/\n.tox/\n.nox/\n.coverage\n.coverage.*\n.cache\nnosetests.xml\ncoverage.xml\n*.cover\n*.py,cover\n.hypothesis/\n.pytest_cache/\ncover/\n\n# Translations\n*.mo\n*.pot\n\n# Django stuff:\n*.log\nlocal_settings.py\ndb.sqlite3\ndb.sqlite3-journal\n\n# Flask stuff:\ninstance/\n.webassets-cache\n\n# Scrapy stuff:\n.scrapy\n\n# Sphinx documentation\ndocs/_build/\n\n# PyBuilder\n.pybuilder/\ntarget/\n\n# Jupyter Notebook\n.ipynb_checkpoints\n\n# IPython\nprofile_default/\nipython_config.py\n\n# pyenv\n#   For a library or package, you might want to ignore these files since the code is\n#   intended to run in multiple environments; otherwise, check them in:\n# .python-version\n\n# pipenv\n#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.\n#   However, in case of collaboration, if having platform-specific dependencies or dependencies\n#   having no cross-platform support, pipenv may install dependencies that don\u0027t work, or not\n#   install all needed dependencies.\n#Pipfile.lock\n\n# poetry\n#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.\n#   This is especially recommended for binary packages to ensure reproducibility, and is more\n#   commonly ignored for libraries.\n#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control\n#poetry.lock\n\n# pdm\n#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.\n#pdm.lock\n#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it\n#   in version control.\n#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control\n.pdm.toml\n.pdm-python\n.pdm-build/\n\n# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm\n__pypackages__/\n\n# Celery stuff\ncelerybeat-schedule\ncelerybeat.pid\n\n# SageMath parsed files\n*.sage.py\n\n# Environments\n.env\n.venv\nenv/\nvenv/\nENV/\nenv.bak/\nvenv.bak/\n\n# Spyder project settings\n.spyderproject\n.spyproject\n\n# Rope project settings\n.ropeproject\n\n# mkdocs documentation\n/site\n\n# mypy\n.mypy_cache/\n.dmypy.json\ndmypy.json\n\n# Pyre type checker\n.pyre/\n\n# pytype static type analyzer\n.pytype/\n\n# Cython debug symbols\ncython_debug/\n\n# PyCharm\n#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can\n#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore\n#  and can be added to the global gitignore or merged into this file.  For a more nuclear\n#  option (not recommended) you can uncomment the following to ignore the entire idea folder.\n#.idea/", "lines": 169, "name": ".gitignore", "size": 3402}, {"content": "\u003c!doctype html\u003e\n\u003chtml lang=\"en\"\u003e\n    \u003chead\u003e\n        \u003cmeta charset=\"UTF-8\" /\u003e\n        \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /\u003e\n        \u003ctitle\u003eModern Markdown Viewer\u003c/title\u003e\n        \u003cscript src=\"https://cdnjs.cloudflare.com/ajax/libs/marked/2.1.3/marked.min.js\"\u003e\u003c/script\u003e\n        \u003cscript src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js\"\u003e\u003c/script\u003e\n        \u003clink\n            rel=\"stylesheet\"\n            href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/atom-one-dark.min.css\"\n        /\u003e\n        \u003cstyle\u003e\n            @import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600\u0026display=swap\");\n\n            * {\n                box-sizing: border-box;\n                margin: 0;\n                padding: 0;\n            }\n\n            body {\n                font-family: \"Inter\", sans-serif;\n                background-color: #1e1e1e;\n                color: #e0e0e0;\n                display: flex;\n                height: 100vh;\n                overflow: hidden;\n            }\n\n            #file-list {\n                width: 300px;\n                min-width: 200px;\n                max-width: 50%;\n                height: 100%;\n                overflow-y: auto;\n                background-color: #252526;\n                padding: 20px;\n                border-right: 1px solid #333;\n                transition: width 0.1s ease;\n            }\n\n            #file-list ul {\n                list-style-type: none;\n            }\n\n            #file-list li {\n                cursor: pointer;\n                padding: 10px;\n                margin-bottom: 5px;\n                background-color: #2d2d2d;\n                border-radius: 5px;\n                transition: all 0.3s ease;\n                white-space: nowrap;\n                overflow: hidden;\n                text-overflow: ellipsis;\n            }\n\n            #file-list li:hover {\n                background-color: #3a3a3a;\n                transform: translateX(5px);\n            }\n\n            #resizer {\n                width: 10px;\n                height: 100%;\n                background-color: #333;\n                cursor: ew-resize;\n            }\n\n            #markdown-content {\n                flex-grow: 1;\n                padding: 30px;\n                overflow-y: auto;\n            }\n\n            #content {\n                max-width: 800px;\n                margin: 0 auto;\n                line-height: 1.6;\n            }\n\n            #content h1,\n            #content h2,\n            #content h3,\n            #content h4,\n            #content h5,\n            #content h6 {\n                margin-top: 1.5em;\n                margin-bottom: 0.5em;\n                color: #61afef;\n            }\n\n            #content p {\n                margin-bottom: 1em;\n            }\n\n            #content code {\n                background-color: #2c313a;\n                padding: 2px 4px;\n                border-radius: 3px;\n                font-family: \"Consolas\", monospace;\n            }\n\n            #content pre {\n                background-color: #282c34;\n                padding: 15px;\n                border-radius: 5px;\n                overflow-x: auto;\n                margin-bottom: 1em;\n            }\n\n            #content img {\n                max-width: 100%;\n                border-radius: 5px;\n                margin: 1em 0;\n            }\n\n            #content a {\n                color: #61afef;\n                text-decoration: none;\n                border-bottom: 1px solid #61afef;\n                transition: all 0.3s ease;\n            }\n\n            #content a:hover {\n                color: #c678dd;\n                border-bottom-color: #c678dd;\n            }\n\n            .loading {\n                display: none;\n                text-align: center;\n                padding: 20px;\n                font-style: italic;\n                color: #888;\n            }\n\n            /* Scrollbar Styling */\n            ::-webkit-scrollbar {\n                width: 8px;\n            }\n\n            ::-webkit-scrollbar-track {\n                background: #1e1e1e;\n            }\n\n            ::-webkit-scrollbar-thumb {\n                background: #888;\n                border-radius: 4px;\n            }\n\n            ::-webkit-scrollbar-thumb:hover {\n                background: #555;\n            }\n        \u003c/style\u003e\n    \u003c/head\u003e\n    \u003cbody\u003e\n        \u003cdiv id=\"file-list\"\u003e\u003c/div\u003e\n        \u003cdiv id=\"resizer\"\u003e\u003c/div\u003e\n        \u003cdiv id=\"markdown-content\"\u003e\n            \u003cdiv id=\"loading\" class=\"loading\"\u003eLoading...\u003c/div\u003e\n            \u003cdiv id=\"content\"\u003e\u003c/div\u003e\n        \u003c/div\u003e\n\n        \u003cscript\u003e\n            const markdownFiles = [\n                \"user-guide.md\",\n\"extension-docs.md\",\n\n            ];\n\n            const fileList = document.getElementById(\"file-list\");\n            const markdownContent = document.getElementById(\"content\");\n            const loadingIndicator = document.getElementById(\"loading\");\n            const resizer = document.getElementById(\"resizer\");\n\n            // Create file list\n            const ul = document.createElement(\"ul\");\n            markdownFiles.forEach((file) =\u003e {\n                const li = document.createElement(\"li\");\n                li.textContent = file;\n                li.onclick = () =\u003e loadMarkdownFile(file);\n                ul.appendChild(li);\n            });\n            fileList.appendChild(ul);\n\n            // Load markdown file\n            function loadMarkdownFile(filename) {\n                loadingIndicator.style.display = \"block\";\n                markdownContent.innerHTML = \"\";\n\n                fetch(`custom_aider/docs/${filename}`)\n                    .then((response) =\u003e {\n                        if (!response.ok) {\n                            throw new Error(\"Network response was not ok\");\n                        }\n                        return response.text();\n                    })\n                    .then((content) =\u003e {\n                        renderMarkdown(content);\n                        loadingIndicator.style.display = \"none\";\n                    })\n                    .catch((error) =\u003e {\n                        console.error(\"Error:\", error);\n                        markdownContent.innerHTML = `\u003cp\u003eError loading ${filename}: ${error.message}\u003c/p\u003e`;\n                        loadingIndicator.style.display = \"none\";\n                    });\n            }\n\n            // Render markdown function\n            function renderMarkdown(content) {\n                marked.setOptions({\n                    highlight: function (code, lang) {\n                        const language = hljs.getLanguage(lang)\n                            ? lang\n                            : \"plaintext\";\n                        return hljs.highlight(code, { language }).value;\n                    },\n                    langPrefix: \"hljs language-\",\n                });\n                markdownContent.innerHTML = marked(content);\n            }\n\n            // Resizable panel functionality\n            let isResizing = false;\n\n            resizer.addEventListener(\"mousedown\", (e) =\u003e {\n                isResizing = true;\n                document.addEventListener(\"mousemove\", resize);\n                document.addEventListener(\"mouseup\", stopResize);\n            });\n\n            function resize(e) {\n                if (!isResizing) return;\n\n                const newWidth = e.clientX;\n                const minWidth = 200;\n                const maxWidth = window.innerWidth / 2;\n\n                if (newWidth \u003e= minWidth \u0026\u0026 newWidth \u003c= maxWidth) {\n                    fileList.style.width = newWidth + \"px\";\n                }\n            }\n\n            function stopResize() {\n                isResizing = false;\n                document.removeEventListener(\"mousemove\", resize);\n                document.removeEventListener(\"mouseup\", stopResize);\n            }\n\n            // Load the first file by default\n            if (markdownFiles.length \u003e 0) {\n                loadMarkdownFile(markdownFiles[0]);\n            }\n        \u003c/script\u003e\n    \u003c/body\u003e\n\u003c/html\u003e", "lines": 258, "name": "index.html", "size": 8061}], "git_info": {"author": "Abhijit", "branch": "main", "commit_hash": "c81f696", "date": "2024-11-24 04:41:11+05:30"}, "messages": [{"content": "For the query:\n\n\"how do i chunk data?\"\n\nSearch results from RAG \u0027lancedblessons\u0027:\n\n\n--- Result 1 (Relevance: 74.20%) ---\n### From Pandas DataFrame\n```python\nimport pandas as pd\n\n# Create DataFrame\ndf = pd.DataFrame({\n    \"vector\": [[1.1, 1.2], [2.1, 2.2]],\n    \"text\": [\"sample 1\", \"sample 2\"]\n})\n\n# Create table from DataFrame\ntable = db.create_table(\"pandas_table\", data=df)\n```\n\nSource: lancedb_lessons_ragsource.md\n\n--- Result 2 (Relevance: 73.19%) ---\n## 6. Advanced Query Techniques\n\nSource: lancedb_lessons_ragsource.md\n\n--- Result 3 (Relevance: 73.07%) ---\n### From Python Data Structures\n```python\nimport lancedb\n\n# Connect to database\ndb = lancedb.connect(\"~/.lancedb\")\n\n# Load from list of dictionaries\ndata = [\n    {\"vector\": [1.1, 1.2], \"text\": \"sample 1\"},\n    {\"vector\": [2.1, 2.2], \"text\": \"sample 2\"}\n]\ntable = db.create_table(\"basic_table\", data)\n```\n\nSource: lancedb_lessons_ragsource.md\n\n--- End of results ---", "role": "user"}, {"content": "Ok.", "role": "assistant"}], "model_info": {"edit_format": "whole", "name": "gemini/gemini-1.5-flash-latest"}, "timestamp": "2024-11-26 21:20:01"}
+    </script>
+    
+    <script>
+    (function() {
+    // Get context data from hidden script tag
+    const contextData = JSON.parse(document.getElementById('context-data').textContent);
+    
+    // Add selection functions to window scope
+    window.selectAll = function() {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = true;
+        });
+    };
+
+    window.deselectAll = function() {
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+        });
+    };
+
+    window.exportSelected = function() {
+        const exportData = {
+            timestamp: contextData.timestamp,
+            model: contextData.model_info.name,
+            files: [],
+            messages: []
+        };
+        
+        // Get selected files (only paths)
+        contextData.files.forEach((file, index) => {
+            if (document.getElementById(`file_${index+1}_check`).checked) {
+                exportData.files.push(file.name);
+            }
+        });
+        
+        // Get selected messages
+        contextData.messages.forEach((msg, index) => {
+            if (document.getElementById(`message_${index+1}_check`).checked) {
+                exportData.messages.push({
+                    role: msg.role,
+                    content: msg.content
+                });
+            }
+        });
+        
+        // Download as JSON file
+        const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `aider_context_${exportData.timestamp.replace(/[: ]/g, '_')}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    };
+})();
+    </script>
+</body>
+</html>

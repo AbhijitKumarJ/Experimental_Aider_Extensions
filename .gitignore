@@ -1,4 +1,8 @@
-.aider*
+.aider/*
+.aider.*/*
+.aider.conf.yml
+.aider.input.history
+.aider.chat.history.md
 .env
 .env.local
 # Byte-compiled / optimized / DLL files

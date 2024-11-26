@@ -1,0 +1,6 @@
+{
+    "api": "REST API with JSON responses",
+    "mvc": "Model-View-Controller architecture pattern",
+    "tests": "Unit tests using pytest with mocking",
+    "docs": "Docstrings following Google style guide"
+}

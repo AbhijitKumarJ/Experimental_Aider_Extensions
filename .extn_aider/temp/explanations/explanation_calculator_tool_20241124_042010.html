@@ -1,0 +1,201 @@
+<!-- custom_aider/gui/templates/cmd_explain_tmpl/base_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Explanation - calculator_tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.0/mermaid.min.js"></script>
+    <style>
+    /* custom_aider/gui/templates/cmd_explain_tmpl/style.css */
+body {
+    font-family: -apple-system, sans-serif;
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f5f5f5;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section {
+    margin: 20px 0;
+    padding: 10px;
+    border-left: 4px solid #2196f3;
+    background: #f8f9fa;
+}
+
+.code {
+    font-family: monospace;
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.tab {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background: #e9ecef;
+    margin-right: 5px;
+}
+
+.tab.active {
+    background: #2196f3;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.collapsible {
+    cursor: pointer;
+    padding: 10px;
+    background: #f1f8ff;
+    border: 1px solid #c8e1ff;
+    border-radius: 5px;
+}
+
+.content {
+    display: none;
+    padding: 10px;
+    border: 1px solid #e1e4e8;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Function: calculator_tool</h1>
+        
+        <!-- Function signature if applicable -->
+        
+        <div class="code">def calculator_tool(tool_input):</div>
+        
+        
+        <!-- Docstring section -->
+        
+        <div class="section">
+            <h3>Documentation</h3>
+            <pre>Performs a calculation based on the tool input.</pre>
+        </div>
+        
+        
+        <!-- Tabs -->
+        <div class="tab-container">
+            <button class="tab active" onclick="openTab(event, 'overview')">Overview</button>
+            <button class="tab" onclick="openTab(event, 'details')">Details</button>
+            <button class="tab" onclick="openTab(event, 'source')">Source</button>
+            <button class="tab" onclick="openTab(event, 'flow')">Flow</button>
+        </div>
+        
+        <!-- Overview tab -->
+        <div id="overview" class="tab-content active">
+            <h3>Purpose</h3>
+            
+            <p>This function accepts 1 arguments and performs the following operations:</p>
+            
+            <ul>
+                
+                <li>Calls float()</li>
+                
+                <li>Calls float()</li>
+                
+            </ul>
+            
+            
+        </div>
+        
+        <!-- Details tab -->
+        <div id="details" class="tab-content">
+            <p>Defined on line 4</p>
+            <p>Contains 2 lines of code</p>
+            
+            
+            <p>Contains conditional statements</p>
+            
+        </div>
+        
+        <!-- Source tab -->
+        <div id="source" class="tab-content">
+            <div class="code">
+                <pre>def calculator_tool(tool_input):
+    """Performs a calculation based on the tool input."""
+    try:
+        num1 = float(tool_input['num1'])
+        num2 = float(tool_input['num2'])
+        operation = tool_input.get('operation', '+')
+        if operation == '+':
+            result = num1 + num2
+        elif operation == '-':
+            result = num1 - num2
+        elif operation == '*':
+            result = num1 * num2
+        elif operation == '/':
+            if num2 == 0:
+                return {'error': 'Division by zero'}
+            result = num1 / num2
+        else:
+            return {'error': 'Unsupported operation'}
+        return {'result': result}
+    except (KeyError, ValueError, TypeError) as e:
+        return {'error': f'Invalid input: {e}'}</pre>
+            </div>
+        </div>
+        
+        <!-- Flow tab -->
+        <div id="flow" class="tab-content">
+            <div class="mermaid">
+                graph TD
+    Start[Start] --> Args[Process Arguments]
+    Args --> Conditions{Conditions}
+    Conditions -->|True| Process[Process]
+    Conditions -->|False| Alt[Alternative]
+    Process --> End[Return]
+    Alt --> End
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    // custom_aider/gui/templates/cmd_explain_tmpl/script.js
+mermaid.initialize({startOnLoad: true, theme: 'neutral'});
+
+function openTab(evt, tabName) {
+    var tabcontents = document.getElementsByClassName("tab-content");
+    for (var i = 0; i < tabcontents.length; i++) {
+        tabcontents[i].style.display = "none";
+    }
+    
+    var tabs = document.getElementsByClassName("tab");
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
+    }
+    
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Open first tab by default
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector('.tab').click();
+});
+    </script>
+</body>
+</html>

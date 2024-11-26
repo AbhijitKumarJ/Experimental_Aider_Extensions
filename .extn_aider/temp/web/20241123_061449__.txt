@@ -1,0 +1,39 @@
+Here is the content of https://aider.chat/docs/install.html:
+
+# [](#quick-start) Quick start
+
+You can get started quickly like this:
+
+    python -m pip install -U aider-chat
+
+    # Change directory into a git repo
+    cd /to/your/git/repo
+
+    # Work with Claude 3.5 Sonnet on your repo
+    export ANTHROPIC_API_KEY=your-key-goes-here
+    aider
+
+    # Work with GPT-4o on your repo
+    export OPENAI_API_KEY=your-key-goes-here
+    aider 
+
+Or see the [full installation instructions](/docs/install/install.html)
+for more details, or the [usage
+instructions](https://aider.chat/docs/usage.html) to start coding with
+aider.
+
+In some environments you may get "aider command not found" errors. You
+can try `python -m aider` or [see here for more
+info](/docs/troubleshooting/aider-not-found.html).
+
+[Installing aider](/assets/install.mp4)
+
+------------------------------------------------------------------------
+
+## Table of contents
+
+-   [Installing aider](/docs/install/install.html)
+-   [Optional steps](/docs/install/optional.html)
+-   [Aider with docker](/docs/install/docker.html)
+-   [Install with pipx](/docs/install/pipx.html)
+-   [GitHub Codespaces](/docs/install/codespaces.html)

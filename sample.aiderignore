@@ -1,6 +1,9 @@
 .aider*
+.extn_aider*
+setup.py
 .env
 .env.local
+.extn_aider
 __pycache__
 custom_aider
 main.py

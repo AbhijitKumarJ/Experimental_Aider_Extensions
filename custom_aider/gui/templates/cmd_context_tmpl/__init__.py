@@ -1,0 +1,1 @@
+"""Explain Command template for aider extensions"""

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aider Context View - {{context.timestamp}}</title>
+    <style>
+    {{styles}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Aider Chat Context</h1>
+            <p>Generated: {{context.timestamp}}</p>
+            <div class="model-info">
+                <p>Main Model: {{context.model_info.name}}</p>
+                <p>Edit Format: {{context.model_info.edit_format}}</p>
+            </div>
+            
+            <div class="controls">
+                <button onclick="selectAll()">Select All</button>
+                <button onclick="deselectAll()">Deselect All</button>
+                <button onclick="exportSelected()" class="primary">Export Selected</button>
+            </div>
+        </div>
+        
+        <!-- Files -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Files in Chat <span class="count">({{context.files|length}} files)</span></h2>
+            </div>
+            <div class="content">
+                {% for file in context.files %}
+                <div class="file-item">
+                    <div class="file-header">
+                        <input type="checkbox" id="file_{{loop.index}}_check" checked>
+                        <h3>{{file.name}}</h3>
+                        <span class="file-info">
+                            {{file.size|filesizeformat}} | {{file.lines}} lines
+                        </span>
+                    </div>
+                    <textarea class="file-preview" readonly>{{file.content}}</textarea>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="section">
+            <div class="section-header">
+                <h2>Chat History <span class="count">({{context.messages|length}} messages)</span></h2>
+            </div>
+            <div class="content">
+                {% for message in context.messages %}
+                <div class="message {{message.role}}">
+                    <div class="message-header">
+                        <input type="checkbox" id="message_{{loop.index}}_check" checked>
+                        <span class="role">{{message.role|upper}}</span>
+                    </div>
+                    <textarea class="message-content" readonly>{{message.content}}</textarea>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        {% if context.git_info %}
+        <div class="git-info">
+            <p>Branch: {{context.git_info.branch}} | Latest Commit: {{context.git_info.commit_hash}} | {{context.git_info.date}}</p>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Pass data to JavaScript -->
+    <script type="application/json" id="context-data">
+        {{context|tojson|safe}}
+    </script>
+    
+    <script>
+    {{scripts}}
+    </script>
+</body>
+</html>

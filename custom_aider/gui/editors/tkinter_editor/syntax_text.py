@@ -45,9 +45,9 @@ class SyntaxText(tk.Text):
         print("SyntaxText initialized")  # Debug print
         
     def _load_keywords(self):
-        """Load keywords from .aider.keywords.json"""
+        """Load keywords from .extn_aider.keywords.json"""
         try:
-            keywords_file = Path.cwd() / '.aider.keywords.json'
+            keywords_file = Path.cwd() /  '.extn_aider' / '.extn_aider.keywords.json'
             if keywords_file.exists():
                 with open(keywords_file) as f:
                     return json.load(f)

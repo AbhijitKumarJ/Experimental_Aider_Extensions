@@ -1,0 +1,10 @@
+.aider*
+.extn_aider*
+setup.py
+logs
+screenshots
+.env
+.env.local
+__pycache__
+custom_aider
+main.py
