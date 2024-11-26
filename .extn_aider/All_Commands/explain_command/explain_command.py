@@ -231,7 +231,7 @@ def cmd_explain(self, args):
                 html = HTMLExplanationGenerator.generate_html(analysis, level)
                 
                 # Save HTML file
-                output_dir = Path.cwd() / '.extn_aider' / 'temp' / 'explanations'
+                output_dir = Path.cwd() / '.extn_aider' / 'temp' / 'explain'
                 output_dir.mkdir(parents=True, exist_ok=True)
                 
                 timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')

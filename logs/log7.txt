@@ -1,0 +1,182 @@
+project-consolidator.py                                                                                         
+> /explain consolidate_project --level=deep                                                                     
+
+
+Analyzing consolidate_project from project-consolidator.py...
+
+Saved explanation to 
+/home/***/Experimental_Aider_Extensions/.extn_aider/temp/explain/explanation_consolida
+te_project_20241127_015553.html
+Opened in default browser
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+project-consolidator.py                                                                                         
+> /aichat-rag-query temp what is aichat?                                                                        
+
+Querying RAG 'temp'...
+API request failed: 400 Client Error: Bad Request for url: http://localhost:8000/v1/rags/search
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+project-consolidator.py                                                                                         
+> /aichat-rag-query aichat-wiki what is aichat?                                                                 
+
+Querying RAG 'aichat-wiki'...
+Could not connect to aichat API. Is the server running?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+project-consolidator.py                                                                                         
+> /aichat-rag-query aichat-wiki1 what is aichat?                                                                
+
+Querying RAG 'aichat-wiki1'...
+
+Results from aichat RAG 'aichat-wiki1':
+
+Query: what is aichat?
+
+Context:
+## Shell Assistant
+
+Simply input what you want to do in natural language, and aichat will prompt and run the command that achieves 
+your intent.
+
+**AIChat is aware of OS and shell you are using, it will provide shell command for specific system you have.**
+
+## Shell Integration
+
+Simply type `alt+e` to let `aichat` provide intelligent completions directly in your terminal.
+
+AIChat offers shell integration scripts for for bash, zsh, PowerShell, fish, and nushell. You can find them on 
+GitHub at https://github.com/sigoden/aichat/tree/main/scripts/shell-integration.
+
+## Shell Autocompletion
+
+The shell autocompletion suggests commands, options, and filenames as you type, enabling you to type less, work 
+faster, and avoid typos.
+
+AIChat offers shell completion scripts for bash, zsh, PowerShell, fish, and nushell. You can find them on GitHub
+at https://github.com/sigoden/aichat/tree/main/scripts/completions.
+
+## Generate Code
+
+By using the `--code` or `-c` parameter, you can specifically request pure code output.
+
+**The `-c/--code` with pipe ensures the extraction of code from Markdown.**
+
+## Use Files & Urls
+
+The `-f/--file` can be used to send files to LLMs.
+
+```
+# Use local file
+aichat -f data.txt
+# Use image file
+aichat -f image.png ocr
+# Use multi files
+aichat -f file1 -f file2 explain
+# Use local dirs
+aichat -f dir/ summarize
+# Use remote URLs
+aichat -f https://example.com/page summarize
+```
+
+## Usage
+
+```
+Usage: aichat [OPTIONS] [TEXT]...
+
+Arguments:
+  [TEXT]...  Input text
+
+Options:
+  -m, --model <MODEL>        Select a LLM model
+      --prompt <PROMPT>      Use the system prompt
+  -r, --role <ROLE>          Select a role
+  -s, --session [<SESSION>]  Start or join a session
+      --empty-session        Ensure the session is empty
+      --save-session         Ensure the new conversation is saved to the session
+  -a, --agent <AGENT>        Start a agent
+  -R, --rag <RAG>            Start a RAG
+      --serve [<ADDRESS>]    Serve the LLM API and WebAPP
+  -e, --execute              Execute commands in natural language
+  -c, --code                 Output code only
+  -f, --file <FILE>          Include files with the message
+  -S, --no-stream            Turn off stream mode
+      --dry-run              Display the message without sending it
+      --info                 Display information
+      --list-models          List all available chat models
+      --list-roles           List all roles
+      --list-sessions        List all sessions
+      --list-agents          List all agents
+      --list-rags            List all RAGs
+  -h, --help                 Print help
+  -V, --version              Print version
+
+```
+
+## Env file
+
+AIChat supports env file ( `<aichat-config-dir>/.env`) for managing environment variables.
+
+You can put all your secret environment variables in the `.env` file.
+
+## Run Server
+
+AIChat comes with a built-in lightweight http server.
+
+```
+$ aichat --serve
+Chat Completions API: http://127.0.0.1:8000/v1/chat/completions
+Embeddings API:       http://127.0.0.1:8000/v1/embeddings
+LLM Playground:       http://127.0.0.1:8000/playground
+LLM Arena:            http://127.0.0.1:8000/arena?num=2
+
+```
+
+Change the listening address:
+
+```
+$ aichat --serve 0.0.0.0
+$ aichat --serve 8080
+$ aichat --serve 0.0.0.0:8080
+
+```
+
+## Examples
+
+```
+aichat                                          # Enter REPL
+aichat Tell a joke                              # Generate response
+
+aichat -e install nvim                          # Execute command
+aichat -c fibonacci in js                       # Generate code
+
+aichat --serve                                  # Run server
+
+aichat -m openai:gpt-4o                         # Select LLM
+
+aichat -r role1                                 # Use role 'role1'
+aichat -s                                       # Begin a temp session
+aichat -s session1                              # Use session 'session1'
+aichat -a agent1                                # Use agent 'agent1'
+aichat -R rag1                                  # Use RAG 'rag1'
+
+aichat --info                                   # View system info
+aichat -r role1 --info                          # View role info
+aichat -s session1 --info                       # View session info
+aichat -a agent1 --info                         # View agent info
+aichat -R rag1 --info                           # View RAG info
+
+cat data.toml | aichat -c to json > data.json   # Pipe Input/Output
+output=$(aichat -S $input)                      # Run in the script
+
+aichat -f a.png -f b.png diff images            # Use files
+```
+
+--- End of results ---
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+project-consolidator.py                                                                                         
+
+> /load-templated new_api                                                                                       
+
+Enter value for endpoint_name [users]:  users                                                                   
+Enter value for http_method [GET]:  GET                                                                         
+Enter value for response_type [json]:  json                                                                     
+No files matched 'api/users.py'. Do you want to create /home/abhijit/Documents/githubcodes/Experimental_Aider_Ex
+tensions/api/users.py? (Y)es/(N)o [Yes]: 

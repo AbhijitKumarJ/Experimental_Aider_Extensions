@@ -10,7 +10,7 @@ from jinja2 import Template
 from ..commands_registry import CommandsRegistry
 
 # Get template directory
-TEMPLATE_DIR = Path(__file__).parent.parent / 'gui' / 'templates' / 'cmd_context_tmpl'
+TEMPLATE_DIR = Path(__file__).parent.parent / 'gui' / 'templates' / 'cmd_context_create_tmpl'
 
 def get_context_data(coder):
     """Gather all context data"""
@@ -65,9 +65,9 @@ def get_context_data(coder):
             
     return context_data
 
-def cmd_create_context(self, args):
+def cmd_context_create(self, args):
     """Create interactive context view with export capabilities
-    Usage: /create_context
+    Usage: /context_create
     
     Generates an HTML page showing all context elements:
     - Files in chat
@@ -123,4 +123,4 @@ def cmd_create_context(self, args):
         self.io.tool_error(f"Error creating context view: {e}")
 
 # Register the command
-CommandsRegistry.register("create_context", cmd_create_context)
+CommandsRegistry.register("context_create", cmd_context_create)

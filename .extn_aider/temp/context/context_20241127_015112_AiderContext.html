@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Aider Chat Context - 20241127_015112</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; max-width: 1200px; margin: 0 auto; padding: 20px; background: #f5f5f5; color: #333; }
+.container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+.header { border-bottom: 2px solid #eee; margin-bottom: 20px; padding-bottom: 10px; }
+.section { margin-bottom: 30px; }
+.file-content { background: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: "Consolas", "Monaco", monospace; }
+.chat-message { margin: 10px 0; padding: 10px; border-radius: 5px; }
+.user-message { background: #e3f2fd; border-left: 4px solid #2196f3; }
+.assistant-message { background: #f5f5f5; border-left: 4px solid #9e9e9e; }
+.system-message { background: #fff3e0; border-left: 4px solid #ff9800; }
+.repo-map { background: #f1f8e9; border-left: 4px solid #8bc34a; }
+pre { margin: 0; padding: 10px; overflow-x: auto; }
+.metadata { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 20px; }
+.metadata-item { background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.file-list { list-style: none; padding: 0; }
+.file-list li { padding: 5px 0; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Aider Chat Context - 2024-11-27 01:51:12</h1>
+</div>
+<div class="metadata section">
+<div class="metadata-item">
+<h3>Model Information</h3>
+<p>Main Model: gemini/gemini-1.5-flash-latest</p>
+<p>Edit Format: whole</p>
+</div>
+<div class="metadata-item">
+<h3>Files in Chat</h3>
+<div class="stats">
+<div>Total Files: 1</div>
+<div>Total Lines: 54</div>
+<div>Total Chars: 2,396</div>
+</div>
+<ul class="file-list">
+<li>project-consolidator.py (2.3KB, 54 lines)</li>
+</ul>
+</div>
+<div class="metadata-item">
+<h3>Git Information</h3>
+<p>Branch: main</p>
+<p>Last Commit: d2fdbcc</p>
+<p>Author: Abhijit</p>
+<p>Date: 2024-11-26 22:31:38+05:30</p>
+</div>
+</div>
+<div class="section">
+<h2>Chat History</h2>
+<div class="assistant-message chat-message">
+<strong>ASSISTANT</strong>
+<pre>Ok.</pre>
+</div>
+
+</div>
+<div class="section">
+<h2>File Contents</h2>
+<h3>project-consolidator.py</h3>
+<div class="file-content">
+<pre>import os
+
+def consolidate_project(source_dir, output_file, ignore_list=None):
+    &quot;&quot;&quot;
+    Consolidate text content of files within a folder into a single Markdown file,
+    showing the folder structure at the beginning.
+    
+    :param source_dir: Path to the project directory
+    :param output_file: Path to the output Markdown file
+    :param ignore_list: List of file/folder names to ignore (optional)
+    &quot;&quot;&quot;
+    if ignore_list is None:
+        ignore_list = []
+    
+    with open(output_file, &#39;w&#39;, encoding=&#39;utf-8&#39;) as out_file:
+        # Write project structure
+        out_file.write(&quot;# Project Structure\n\n&quot;)
+        for root, dirs, files in os.walk(source_dir):
+            dirs[:] = [d for d in dirs if d not in ignore_list]
+            level = root.replace(source_dir, &#39;&#39;).count(os.sep)
+            indent = &#39; &#39; * 4 * level
+            out_file.write(f&quot;{indent}- {os.path.basename(root)}/\n&quot;)
+            sub_indent = &#39; &#39; * 4 * (level + 1)
+            for file in files:
+                if file not in ignore_list:
+                    out_file.write(f&quot;{sub_indent}- {file}\n&quot;)
+        
+        out_file.write(&quot;\n---\n\n&quot;)
+        
+        # Write file contents
+        for root, dirs, files in os.walk(source_dir):
+            dirs[:] = [d for d in dirs if d not in ignore_list]
+            for file in files:
+                if file not in ignore_list:
+                    file_path = os.path.join(root, file)
+                    rel_path = os.path.relpath(file_path, source_dir)
+                    out_file.write(f&quot;# {rel_path}\n\n&quot;)
+                    try:
+                        with open(file_path, &#39;r&#39;, encoding=&#39;utf-8&#39;) as in_file:
+                            content = in_file.read()
+                            out_file.write(f&quot;```\n{content}\n```\n\n&quot;)
+                    except UnicodeDecodeError:
+                        out_file.write(&quot;*[Binary file not shown]*\n\n&quot;)
+                    except Exception as e:
+                        out_file.write(f&quot;*[Error reading file: {str(e)}]*\n\n&quot;)
+
+# Example usage
+if __name__ == &quot;__main__&quot;:
+    project_dir = &quot;./&quot;
+    output_md = &quot;aider_extension_consolidated.md&quot;
+    files_to_ignore = [&quot;project-consolidator.py&quot;, &quot;.git&quot;, &quot;.gitignore&quot;, &quot;venv&quot;, &quot;.env&quot;, &quot;__pycache__&quot;,&quot;aider_extension_consolidated.md&quot;]
+    
+    consolidate_project(project_dir, output_md, files_to_ignore)
+    print(f&quot;Project consolidated to {output_md}&quot;)
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

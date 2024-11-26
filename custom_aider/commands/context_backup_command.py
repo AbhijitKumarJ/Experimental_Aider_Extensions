@@ -6,16 +6,16 @@ from pathlib import Path
 
 from ..commands_registry import CommandsRegistry
 
-def cmd_backupcontext(self, args):
+def cmd_context_backup(self, args):
     """Save a backup copy of current chat context in JSON format
-    Usage: /backupcontext [filename_prefix]
+    Usage: /context_backup [filename_prefix]
     
     Saves the current chat context including model info, files, and messages
-    as a JSON file in .extn_aider/temp/backup_context/ directory.
+    as a JSON file in .extn_aider/temp/context_backup/ directory.
     Optional filename prefix can be specified.
     """
     # Create backup directory
-    backup_dir = Path.cwd() / '.extn_aider' / 'temp' / 'backup_context'
+    backup_dir = Path.cwd() / '.extn_aider' / 'temp' / 'context_backup'
     backup_dir.mkdir(parents=True, exist_ok=True)
 
     # Generate timestamp
@@ -45,4 +45,4 @@ def cmd_backupcontext(self, args):
         self.io.tool_error(f"Error saving context backup: {e}")
 
 # Register the command
-CommandsRegistry.register("backupcontext", cmd_backupcontext)
+CommandsRegistry.register("context_backup", cmd_context_backup)

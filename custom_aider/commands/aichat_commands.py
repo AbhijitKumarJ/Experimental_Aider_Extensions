@@ -4,7 +4,7 @@ import requests
 import json
 from ..commands_registry import CommandsRegistry
 
-def cmd_query_rag_from_aichat(self, args):
+def cmd_aichat_rag_query(self, args):
     """Query a RAG using the aichat API endpoint
     Usage: /query_rag_from_aichat <rag_name> <query>
     
@@ -85,15 +85,15 @@ def cmd_query_rag_from_aichat(self, args):
     except Exception as e:
         self.io.tool_error(f"Error querying RAG: {e}")
 
-def completions_query_rag_from_aichat(self):
+def completions_aichat_rag_query(self):
     """Completions for query_rag_from_aichat command"""
     # Return basic defaults since the aichat example doesn't show 
     # a RAG listing endpoint
-    return ["aichat-wiki", "documentation", "codebase"]
+    return ["aichat-wiki", "temp"]
 
 # Register the command
 CommandsRegistry.register(
-    "query_rag_from_aichat", 
-    cmd_query_rag_from_aichat,
-    completions_query_rag_from_aichat
+    "aichat_rag_query", 
+    cmd_aichat_rag_query,
+    completions_aichat_rag_query
 )

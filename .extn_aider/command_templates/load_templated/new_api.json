@@ -5,7 +5,7 @@
         {"name": "response_type", "default": "json"}
     ],
     "commands": [
-        "/add api\\{endpoint_name}.py",
+        "/add api/{endpoint_name}.py",
         "/code Create a {http_method} endpoint at /{endpoint_name} that returns {response_type} with python flask"
     ]
 }

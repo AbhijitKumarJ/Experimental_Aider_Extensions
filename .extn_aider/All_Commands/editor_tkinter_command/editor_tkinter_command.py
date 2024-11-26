@@ -24,9 +24,9 @@ def ensure_dependencies():
         return True
     return False
 
-def cmd_tkinter_editor(self, initial_content=""):
+def cmd_editor_tkinter(self, initial_content=""):
     """Open the enhanced tkinter editor for writing prompts
-    Usage: /tkinter_editor [initial_text]
+    Usage: /editor_tkinter [initial_text]
     
     Opens a graphical editor window with:
     - Syntax highlighting for multiple formats
@@ -50,7 +50,7 @@ def cmd_tkinter_editor(self, initial_content=""):
     
     # Import the editor directly
     try:
-        from ..gui.editors.tkinter_editor.tkinter_editor import SimpleEditor
+        from ..gui.editors.editor_tkinter.editor_tkinter import SimpleEditor
         
         # Create and run editor
         editor = SimpleEditor(initial_content)
@@ -64,4 +64,4 @@ def cmd_tkinter_editor(self, initial_content=""):
         return None
 
 # Register the editor command
-CommandsRegistry.register("tkinter_editor", cmd_tkinter_editor)
+CommandsRegistry.register("editor_tkinter", cmd_editor_tkinter)

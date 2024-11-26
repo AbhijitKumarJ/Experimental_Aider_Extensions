@@ -12,7 +12,7 @@ def _list_context_files():
     context_files = []
     
     # Check both backup and create directories
-    for dirname in ['backup_context', 'create_context']:
+    for dirname in ['context_backup', 'context_create']:
         context_dir = Path.cwd() / '.extn_aider' / 'temp' / dirname
         if context_dir.exists():
             context_files.extend(context_dir.glob('*.json'))
@@ -34,19 +34,19 @@ def _load_context_file(filepath):
     except Exception as e:
         raise ValueError(f"Error loading context file: {e}")
 
-def cmd_load_context(self, args):
+def cmd_context_load(self, args):
     """Load a context from a backup file
-    Usage: /load_context [filename]
+    Usage: /context_load [filename]
     
     If filename is not provided, lists available context files.
     First clears current context, then loads files and messages from the context file.
-    Searches in both .extn_aider/temp/backup_context/ and .extn_aider/temp/create_context/ directories.
+    Searches in both .extn_aider/temp/context_backup/ and .extn_aider/temp/context_create/ directories.
     """
     # List context files if no argument provided
     if not args.strip():
         context_files = _list_context_files()
         if not context_files:
-            self.io.tool_error("No context files found in .extn_aider/temp/backup_context/ or .extn_aider/temp/create_context/")
+            self.io.tool_error("No context files found in .extn_aider/temp/context_backup/ or .extn_aider/temp/context_create/")
             return
             
         self.io.tool_output("\nAvailable context files:")
@@ -59,7 +59,7 @@ def cmd_load_context(self, args):
     filename = args.strip()
     context_file = None
     
-    for dirname in ['backup_context', 'create_context']:
+    for dirname in ['context_backup', 'context_create']:
         path = Path.cwd() / '.extn_aider' / 'temp' / dirname / filename
         if path.exists():
             context_file = path
@@ -101,12 +101,12 @@ def cmd_load_context(self, args):
     except Exception as e:
         self.io.tool_error(f"Error loading context: {e}")
 
-def completions_load_context(self):
-    """Provide completions for load_context command - available context files"""
+def completions_context_load(self):
+    """Provide completions for context_load command - available context files"""
     try:
         return [f.name for f in _list_context_files()]
     except:
         return []
 
 # Register the command
-CommandsRegistry.register("load_context", cmd_load_context, completions_load_context)
+CommandsRegistry.register("context_load", cmd_context_load, completions_context_load)

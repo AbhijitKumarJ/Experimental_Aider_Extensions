@@ -1,13 +1,13 @@
-# Aider Template Command System
+# Load Templated Command for Aider
 
-The Template Command System extends aider with the ability to load and execute parameterized command templates. This allows you to create reusable command sequences with customizable parameters.
+This module enhances Aider with the ability to load and execute parameterized command templates. It allows you to create reusable command sequences with customizable parameters.
 
 ## Features
 
 - Load command templates from JSON files
 - Support for default parameter values
 - Interactive parameter collection
-- Command completion for template names
+- Command completion for template names 
 - Error handling and validation
 - Support for both aider commands and chat messages
 
@@ -130,7 +130,7 @@ Tips for creating templates:
 - Consider command ordering
 - Test templates thoroughly
 
-## Command Help
+## Command Help 
 
 You can get help on the command at any time:
 ```bash
@@ -140,7 +140,7 @@ You can get help on the command at any time:
 ## Error Handling
 
 The command handles various error conditions:
-- Missing template files
+- Missing template files 
 - Invalid JSON in templates
 - Missing required parameters
 - Invalid parameter references
@@ -159,7 +159,7 @@ The command provides completion support for:
 
 1. **Template Organization:**
    - Use descriptive template names
-   - Group related templates consistently
+   - Group related templates consistently 
    - Document templates well
 
 2. **Parameter Design:**
@@ -195,7 +195,7 @@ To contribute new templates or improvements:
 ## Support
 
 If you encounter any issues:
-1. Check the command help: `/help load_templated`
+1. Check the command help: `/help load_templated` 
 2. Review your template JSON syntax
 3. Verify parameter names and references
 4. Check command validity

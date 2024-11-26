@@ -4,7 +4,7 @@ An Aider extension command that enables querying RAGs (Retrieval Augmented Gener
 
 ## Overview
 
-The `/query_rag_from_aichat` command allows you to search and retrieve information from RAGs that are set up in AIChat. It connects to AIChat's local API endpoint to perform queries and retrieves context-relevant information.
+The `/aichat_rag_query` command allows you to search and retrieve information from RAGs that are set up in AIChat. It connects to AIChat's local API endpoint to perform queries and retrieves context-relevant information.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ The `/query_rag_from_aichat` command allows you to search and retrieve informati
 ## Command Usage
 
 ```bash
-/query_rag_from_aichat <rag_name> <query>
+/aichat_rag_query <rag_name> <query>
 ```
 
 ### Parameters
@@ -27,10 +27,10 @@ The `/query_rag_from_aichat` command allows you to search and retrieve informati
 
 ```bash
 # Query the aichat-wiki RAG
-/query_rag_from_aichat aichat-wiki "How do I use RAG?"
+/aichat_rag_query aichat-wiki "How do I use RAG?"
 
 # Query documentation RAG
-/query_rag_from_aichat documentation "What are the available commands?"
+/aichat_rag_query documentation "What are the available commands?"
 ```
 
 ## Features
@@ -133,7 +133,7 @@ Common error messages and their meaning:
 
 2. In Aider, query a RAG:
    ```bash
-   /query_rag_from_aichat aichat-wiki "how does it work"
+   /aichat_rag_query aichat-wiki "how does it work"
    ```
 
 3. Review the returned context and continue your chat with Aider

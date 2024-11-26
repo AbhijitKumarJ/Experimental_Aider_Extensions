@@ -99,7 +99,7 @@ def get_file_stats(coder):
             
     return stats, file_details
 
-def cmd_showcontext(self, args):
+def cmd_context_show(self, args):
     """Save and display current chat context as HTML
     Usage: /showcontext
     
@@ -213,4 +213,4 @@ def cmd_showcontext(self, args):
         self.io.tool_output(f"You can manually open: {output_file}")
 
 # Register commands
-CommandsRegistry.register("showcontext", cmd_showcontext)
+CommandsRegistry.register("context_show", cmd_context_show)
