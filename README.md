@@ -1,132 +1,141 @@
 # Unofficial and experimental Aider Extension
 
-Experimental Custom extensions for the Aider AI coding assistant.
-The purpose of this repository is to experiment with possible new features and suggest to aider contributor to add based on their judgement.
-Do not consider this in any way related to official distribution of aider.
+Experimental Custom extensions for the Aider AI coding assistant.  This repository is for experimenting with potential new features and suggesting them to Aider contributors.  This is **not** an officially supported Aider distribution.
 
 ## Important Notice
 
-This is just for experimentation and not for serious use. If you want to use these files, 
-please verify the code yourself and experiment with it before using it to any work.
+This is purely experimental and not intended for production use.  Before using any code from this repository, please thoroughly review and test it.  Use at your own risk.
 
 ## Features
 
-- RAG (Retrieval Augmented Generation) support for document querying
-- Advanced chat customization with keyword substitution
-- Enhanced Git integration with better visualizations
-- Code analysis and explanation tools
-- Interactive context management and visualization
-- GUI editors with syntax highlighting
-- Web and voice command enhancements
-- Template support for common development tasks
+- **RAG (Retrieval Augmented Generation):**  Query documents using RAG.
+- **Advanced Chat Customization:** Keyword substitution for enhanced chat interactions.
+- **Enhanced Git Integration:** Improved visualizations and streamlined workflows.
+- **Code Analysis and Explanation Tools:**  Interactive code analysis and explanation features.
+- **Interactive Context Management:**  View, save, and load chat context.
+- **GUI Editors:** Enhanced Tkinter editor with syntax highlighting and features.
+- **Web and Voice Command Enhancements:** Improved web scraping and voice command processing.
+- **Command Templating:** Create reusable command sequences using templates.
+
 
 ## Installation
 
-```bash
-# First install aider
-pip install aider-chat
+1. **Install Aider:**
+   ```bash
+   pip install aider-chat
+   ```
 
-# Clone this repository
-git clone https://github.com/YourUsername/aider-extension.git
-cd aider-extension
+2. **Clone this repository:**
+   ```bash
+   git clone https://github.com/YourUsername/aider-extension.git
+   cd aider-extension
+   ```
 
-# Install additional dependencies
-pip install jinja2
-pip install llama-index-core  
-pip install llama-index-embeddings-huggingface
-pip install pygments
-pip install pyperclip
-pip install streamlit
-```
+3. **Install dependencies:**
+   ```bash
+   pip install jinja2 llama-index-core llama-index-embeddings-huggingface pygments pyperclip streamlit requests
+   pip install 'aider-chat[help]' --extra-index-url https://download.pytorch.org/whl/cpu
+   ```
 
 ## Project Structure
 
 ```
 ./
-├── main.py               # New simple runner
-├── .extn_aider/           
-│   ├── command_templates/ # Command templates
+├── main.py               # Main script to run the extension
+├── .extn_aider/           # Directory for extension data
+│   ├── command_templates/ # Directory for command templates
 │   │   ├── load_templated/
 │   │   └── load_templated_script/
-│   └── All_Commands/     # Reference implementations (not used directly)
-│       ├── docrag_commands/
-│       ├── git_commands/
-│       ├── context_commands/
-│       └── ...
-└── custom_aider/         # Core extension implementation
+│   └── ...
+└── custom_aider/         # Core extension code
     ├── __init__.py
-    ├── monkey_patch.py   # Early patching system
-    ├── custom_aider_main.py
-    ├── custom_coder.py
-    ├── commands_registry.py
-    ├── commands/         # Active command implementations
+    ├── monkey_patch.py   # Early patching of Aider classes
+    ├── custom_aider_main.py # Main entry point for the extension
+    ├── custom_coder.py    # Custom Coder class
+    ├── commands_registry.py # Command registry
+    ├── commands/         # Custom command implementations
     │   ├── docrag_commands.py
     │   ├── git_commands.py
     │   └── ...
-    ├── gui/             # GUI components
+    ├── gui/             # GUI components (Tkinter editor)
     └── docs/            # Documentation
 ```
 
 ## Basic Usage
 
-1. Start the extended version:
-```bash
-python main.py
-```
+1. **Start the extension:**
+   ```bash
+   python main.py
+   ```
 
-2. Use new commands in chat:
-```
-> /help  # See available commands
-> /createragfromdoc docs ./documentation.md  # Create a RAG
-> /glog -n 5  # Show git history
-```
+2. **Use commands in the Aider chat:**
+   ```
+   > /help  # List available commands
+   > /createragfromdoc docs ./documentation.md  # Create a RAG index
+   > /glog -n 5  # Show the last 5 git commits
+   ```
 
 ## Available Commands
 
-Note: For detailed documentation on each command, see the README.md files in `.extn_aider/All_Commands/*/`
+(See detailed documentation in the `custom_aider/docs` directory and individual command files.)
 
 ### Document Processing
-- `/createragfromdoc` - Create a RAG from document
-- `/queryragfromdoc` - Query existing RAGs
-- `/listrag` - List available RAGs
-- `/deleterag` - Remove a RAG
+- `/createragfromdoc <nickname> <path>`: Create a RAG index from a document.
+- `/queryragfromdoc <nickname> <query>`: Query an existing RAG index.
+- `/listrag`: List available RAG indexes.
+- `/deleterag <nickname>`: Delete a RAG index.
 
 ### Enhanced Chat
-- `/customchat` - Chat with keyword substitution
-- `/clip-edit` - Apply clipboard edits
-- `/tkinter_editor` - Launch desktop editor
+- `/customchat <message>`: Send a message with keyword substitution.
+- `/clip-edit <filename>`: Apply code edits from the clipboard.
+- `/editor_tkinter`: Open the enhanced Tkinter editor.
 
 ### Git Integration
-- `/glog` - Enhanced git log
-- `/zadd` - Smart git add
-- `/zcommit` - Enhanced commit with stats
+- `/glog [options]`: Show a Git log with graph and statistics.
+- `/zadd <files>`: Add files to Git staging area with status check.
+- `/zcommit <message>`: Commit changes with statistics in the message.
+- `/zdrop <files>`: Remove files from the chat with backup.
 
 ### Context Management
-- `/showcontext` - Save/display chat context
-- `/explain` - Interactive code explanation
-- `/files` - List files with details
-- `/stats` - Show file statistics
+- `/context_show`: Display the current chat context as HTML.
+- `/context_backup [prefix]`: Save a backup of the chat context.
+- `/context_load [filename]`: Load a chat context from a backup file.
+- `/explain <target> [--level <level>]`: Get an interactive explanation of code.
+- `/files [pattern]`: List files in the chat with details.
+- `/stats`: Show statistics about files in the chat.
+- `/zclear`: Clear the chat history with backup.
 
-### Other Commands
-- `/zvoice` - Enhanced voice command
-- `/zweb` - Enhanced web scraping
-- `/load_templated` - Load command templates
-- `/load_templated_script` - Load script templates
+### Web and Voice
+- `/zweb <url>`: Fetch content from a URL with retry mechanism.
+- `/zvoice`: Use voice input with transcription confidence check.
+
+### Template Loading
+- `/load_templated <template_name>`: Load and execute a parameterized command template.
+- `/load_templated_script <template_name>`: Load and execute a script-based command template.
+
+### AIChat API
+- `/aichat_rag_query <rag_name> <query>`: Query a RAG using the AIChat API.
+
 
 ## Configuration
 
-1. Create `.aider.conf.yml`:
+1. **`.aider.conf.yml`:**  Main configuration file (see example below).
+2. **`.extn_aider.keywords.json`:**  Keywords for chat substitution (see example below).
+
+**Example `.aider.conf.yml`:**
+
 ```yaml
 model: gemini/gemini-1.5-flash-latest
 map-tokens: 1024
-subtree-only: true
+subtree_only: true
 ```
 
-2. Create `.extn_aider.keywords.json` for chat substitutions:
+**Example `.extn_aider.keywords.json`:**
+
 ```json
 {
-    "api": "REST API with JSON responses",
-    "tests": "Unit tests using pytest"
+  "api": "REST API with JSON responses",
+  "tests": "Unit tests using pytest"
 }
 ```
 
