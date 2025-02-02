@@ -12,8 +12,10 @@ A comprehensive guide to using the extended Aider command-line interface with al
 6. [Code Analysis Tools](#code-analysis-tools)
 7. [Editor Integration](#editor-integration)
 8. [Web and Voice Features](#web-and-voice-features)
-9. [Configuration](#configuration)
-10. [Tips and Tricks](#tips-and-tricks)
+9. [AIChat API Integration](#aichat-api-integration)
+10. [Configuration](#configuration)
+11. [Tips and Tricks](#tips-and-tricks)
+
 
 ## Getting Started
 
@@ -27,13 +29,7 @@ cd Experimental_Aider_Extensions
 
 2. Install required dependencies:
 ```bash
-pip install aider-chat
-pip install jinja2
-pip install llama-index-core
-pip install llama-index-embeddings-huggingface
-pip install pygments
-pip install pyperclip
-pip install streamlit
+pip install aider-chat jinja2 llama-index-core llama-index-embeddings-huggingface pygments pyperclip streamlit requests
 ```
 
 Optional dependencies for specific features:
@@ -187,7 +183,13 @@ Enhanced file operations:
 
 ```bash
 # Save and view current chat context
-> /showcontext
+> /context_show
+
+# Save a backup of the current chat context
+> /context_backup
+
+# Load a previous chat context
+> /context_load
 
 # Clear chat with history backup
 > /zclear
@@ -226,11 +228,8 @@ Enhanced file operations:
 ### GUI Editors
 
 ```bash
-# Launch Streamlit editor
-> /streamlit_editor
-
 # Launch Tkinter editor
-> /tkinter_editor
+> /editor_tkinter
 ```
 
 ## Web and Voice Features
@@ -241,7 +240,7 @@ Enhanced file operations:
 # Enhanced web command with retry
 > /zweb https://example.com/docs
 
-# Content is automatically saved to .aider/web/
+# Content is automatically saved to .extn_aider/temp/web/
 ```
 
 ### Voice Integration
@@ -253,17 +252,26 @@ Enhanced file operations:
 # Confirm accuracy when prompted
 ```
 
+## AIChat API Integration
+
+```bash
+# Query a RAG using the aichat API
+> /aichat_rag_query aichat-wiki "How does feature X work?"
+```
+
 ## Configuration
 
 ### Directory Structure
 
 The extension creates these directories:
 ```
-.aider/
+.extn_aider/
 ├── rags/        # RAG indexes
-├── context/     # Context reports
-├── web/         # Scraped content
-├── backups/     # File backups
+├── temp/
+│   ├── context_backup/ # Context backups
+│   ├── context/       # Context reports
+│   ├── web/           # Scraped content
+│   └── backups/       # File backups
 └── explanations/# Code explanations
 ```
 
@@ -276,7 +284,7 @@ map-tokens: 1024
 subtree-only: true
 ```
 
-2. `.aider.keywords.json` - Custom keywords:
+2. `.extn_aider.keywords.json` - Custom keywords:
 ```json
 {
     "api": "REST API with JSON responses",
@@ -354,7 +362,7 @@ subtree-only: true
 
 1. Regular backups:
    ```bash
-   > /showcontext  # Saves context regularly
+   > /context_backup  # Saves context regularly
    ```
 
 2. Organized RAGs:
